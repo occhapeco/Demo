@@ -1,0 +1,43 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "br.oc.batata"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "br.oc.batata"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "br.oc.batata"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "br.oc.batata"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "br.oc.batata"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "br.oc.batata"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "br.oc.batata"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "br.oc.batata"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "br.oc.batata"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "br.oc.batata"
+        }
+    }
+}
