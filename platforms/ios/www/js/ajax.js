@@ -8,7 +8,6 @@ var myApp = new Framework7({
   smartSelectBackText: 'Voltar',
   smartSelectPopupCloseText: 'Fechar',
   smartSelectPickerCloseText: 'Definir',
-  init: false,
   preloadPreviousPage : false,
   uniqueHistory : true,
   modalCloseByOutside : true,
@@ -25,9 +24,8 @@ var mainView = myApp.addView('.view-main', {
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 
-    if(page.name === 'index')
-    {
-
+    if(page.name === 'perfil'){
+      //alert("batatatatata");
     }
 
 });
