@@ -13,14 +13,15 @@ CREATE TABLE empresa (
 CREATE TABLE endereco (
   id INTEGER UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   empresa_id INTEGER UNSIGNED NOT NULL,
-  rua VARCHAR(60) NULL,
-  num INTEGER UNSIGNED NULL,
-  complemento VARCHAR(20) NULL,
-  bairro VARCHAR(30) NULL,
-  cidade VARCHAR(40) NULL,
-  uf VARCHAR(2) NULL,
-  latitude DOUBLE NULL,
-  longitude DOUBLE NULL,
+  rua VARCHAR(60) NOT NULL,
+  num INTEGER UNSIGNED NOT NULL,
+  complemento VARCHAR(20) NOT NULL,
+  bairro VARCHAR(30) NOT NULL,
+  cidade VARCHAR(40) NOT NULL,
+  uf VARCHAR(2) NOT NULL,
+  latitude DOUBLE NOT NULL,
+  longitude DOUBLE NOT NULL,
+  telefone VARCHAR(11) NOT NULL,
   FOREIGN KEY(empresa_id)REFERENCES empresa(id)
 );
 
@@ -30,6 +31,8 @@ CREATE TABLE usuario (
   email VARCHAR(40) NOT NULL,
   senha VARCHAR(60) NOT NULL,
   celular VARCHAR(11) NOT NULL,
+  genero INTEGER(1) NOT NULL,
+  nascimento VARCHAR(10) NOT NULL,
   dias_bloqueio INTEGER UNSIGNED NOT NULL
 );
 
@@ -50,9 +53,10 @@ CREATE TABLE cupom (
   preco_cupom DOUBLE NOT NULL,
   prazo DATETIME NOT NULL,
   quantidade INTEGER UNSIGNED NOT NULL,
-  prioridade INTEGER UNSIGNED NOT NULL,
-  pagamento INTEGER UNSIGNED NOT NULL,
-  estado INTEGER UNSIGNED NOT NULL,
+  prioridade INTEGER(1) UNSIGNED NOT NULL,
+  pagamento INTEGER(1) UNSIGNED NOT NULL,
+  delivery INTEGER(1) UNSIGNED NOT NULL,
+  estado INTEGER(1) UNSIGNED NOT NULL,
   FOREIGN KEY(empresa_id)REFERENCES empresa(id),
   FOREIGN KEY(endereco_id)REFERENCES endereco(id)
 );
@@ -69,7 +73,12 @@ CREATE TABLE usuario_has_cupom (
   id INTEGER UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   cupom_id INTEGER UNSIGNED NOT NULL,
   usuario_id INTEGER UNSIGNED NOT NULL,
-  estado INTEGER UNSIGNED NOT NULL,
+  estado INTEGER(1) UNSIGNED NOT NULL,
+  preco_cupom DOUBLE NOT NULL,
+  prazo VARCHAR(16) NOT NULL,
+  pagamento INTEGER(1) NOT NULL,
+  delivery INTEGER(1) NOT NULL,
+  resgate VARCHAR(16) NOT NULL,
   FOREIGN KEY(usuario_id)REFERENCES usuario(id),
   FOREIGN KEY(cupom_id)REFERENCES cupom(id)
 );
