@@ -29,3 +29,22 @@ $$(document).on('pageInit', function (e) {
     }
 
 });
+
+var ptrContent = $$('.pull-to-refresh-content');
+ 
+// Add 'refresh' listener on it
+ptrContent.on('refresh', function (e) {
+    // Emulate 2s loading
+    setTimeout(function () {
+      myApp.pullToRefreshDone();
+    },2000);
+});
+
+$$('.infinite-scroll').on('infinite', function () {
+  navigator.notification.confirm(
+        'You are the winner!', // message
+         onConfirm,            // callback to invoke with index of button pressed
+        'Game Over',           // title
+        ['Restart','Exit']         // buttonLabels
+    );
+});
