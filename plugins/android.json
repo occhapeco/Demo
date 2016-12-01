@@ -66,6 +66,9 @@
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.nomedoapp"
+        },
+        "cordova-plugin-fcm": {
+            "PACKAGE_NAME": "com.nomedoapp"
         }
     },
     "dependent_plugins": {

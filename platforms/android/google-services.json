@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "486879908931",
+    "firebase_url": "https://appcupons-151116.firebaseio.com",
+    "project_id": "appcupons-151116",
+    "storage_bucket": "appcupons-151116.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486879908931:android:288a226168781e5a",
+        "android_client_info": {
+          "package_name": "com.nomedoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486879908931-51p0c8vtk61vh9sgokuktablqtbplo9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgzs5FzcZ1cBJSDO1sNbXmaOhgycCfU6g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
