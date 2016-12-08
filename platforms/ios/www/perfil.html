@@ -24,7 +24,7 @@
                 <div class="item-media"><i class="fa fa-user"></i></div>
                 <div class="item-inner">
                   <div class="item-input">
-                    <input type="text" placeholder="Seu nome">
+                    <input type="text" placeholder="Seu nome" id="user_nome">
                   </div>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                 <div class="item-media"><i class="fa fa-envelope"></i></div>
                 <div class="item-inner">
                   <div class="item-input">
-                    <input type="email" placeholder="E-mail">
+                    <input type="email" placeholder="E-mail" readonly id="user_email">
                   </div>
                 </div>
               </div>
@@ -46,7 +46,7 @@
                 <div class="item-media"><i class="fa fa-phone"></i></div>
                 <div class="item-inner">
                   <div class="item-input">
-                    <input type="email" placeholder="Telefone">
+                    <input type="email" placeholder="Telefone" id="user_telefone">
                   </div>
                 </div>
               </div>
@@ -57,9 +57,9 @@
                   <div class="item-media"><i class="fa fa-mars-double"></i></div>
                   <div class="item-inner">
                     <div class="item-input">
-                      <select>
-                        <option>Masculino</option>
-                        <option>Feminino</option>
+                      <select id="user_genero">
+                        <option value="1">Masculino</option>
+                        <option value="0">Feminino</option>
                       </select>
                     </div>
                   </div>
@@ -71,7 +71,7 @@
                 <div class="item-media"><i class="fa fa-calendar"></i></div>
                 <div class="item-inner">
                   <div class="item-input">
-                    <input type="date" name="data" placeholder="Data de nascimento" value="2014-04-30">
+                    <input type="date" name="data" placeholder="Data de nascimento" value="2014-04-30" id="user_nasc">
                   </div>
                 </div>
               </div>
@@ -129,7 +129,7 @@
             </li>
             <li>
               <a href="#" class="item-link item-content" style="background-color: coral">
-                <div class="item-media"><i class="fa fa-lock"></i></div>
+                <div class="item-media"><i class="fa fa-sign-out"></i></div>
                 <div class="item-inner">
                   <div class="item-title">Logout</div>
                 </div>
