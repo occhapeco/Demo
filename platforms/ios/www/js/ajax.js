@@ -64,7 +64,7 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
                                                           '<div class="facebook-name" style="font-size: 18px; color: black; font-family: tahoma;font-weight: bold">Pizza grande + potatos</div>'+
                                                        ' </div>'+
                                                            '<div class="facebook-name" style="margin-left: 15px;">'+cupons[i].nome_fantasia+'</div>'+
-                                                        '<div class="card-content"><a href="oferta.html"><img src="img/pizza.jpg" width="100%">'+
+                                                        '<div class="card-content"><a href="oferta.html"><!-- colocar aqui os valores pra testar dps --><img src="img/pizza.jpg" width="100%">'+
                                                           '<div style="position:absolute; right: 20px; z-index: 999999;top: 10px;color: white; background-color: rgba(255, 0, 0,0.85); padding: 10px; border-radius: 5px; font-weight: bold; ">'+
                                                             '<i class="fa fa-ticket"></i> '+cupons[i].quantidade+
                                                             '</div>'+
@@ -140,6 +140,31 @@ function carregar_meus_cupons(){
     }   
   myApp.hidePreloader();
 },100);
+}
+
+function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,empresa){
+  myApp.showPreloader();
+  setTimeout(function () {
+    json_dados = ajax_method(false,'usuario.select_detalhes_cupom',id);
+    if(json_dados){
+      var cupom = JSON.parse(json_dados);
+      set_inner("empresa_oferta",empresa);
+     // document.getElementById('img_oferta').setAttribute("src", cupom[0].caminho); precisamos do caminho do site
+     set_inner("desconto_cupom",desconto);
+     set_inner("nome_cupom",nome);
+     set_inner("precos_cupom",'Por: R$'+preco_desc+' &nbsp<s style="color:gray">De: R$'+preco_ini+'</s>');
+     set_inner("info_cupom",'<i class="fa fa-ticket"></i> '+quantidade+' Restantes<br><i class="fa fa-calendar"></i> Válido até'+prazo);
+     set_inner("desc_cupom",'<p>'+cupom[0].descricao+'</p>');
+     set_inner("regras_cupom",'<p>'+cupom[0].regras+'</p>');
+     set_inner("empresa_cupom",empresa); 
+     document.getElementById('telefone_cupom').setAttribute("onclick", "window.open('tel:"+cupom[0].telefone+"', '_system');");
+     document.getElementById("endereco_cupom").setAttribute("onclick", "window.open('http://maps.apple.com/?ll="+cupom[0].latitude+","+cupom[0].longitude+"', '_system');");
+
+    }else{
+      myApp.alert("Não foi possível carregar os detalhes do cupom. Tente novamente.");
+    }
+    myApp.hidePreloader();
+  },100);
 }
 
 function login()
@@ -233,6 +258,22 @@ function alterar_perfil(){
         }
       }
   },100);
+}
+
+function get_elemento(id){
+    return document.getElementById(id);
+}
+
+function get_value(id){
+    return document.getElementById(id).value;
+}
+
+function set_value(id,valor){
+   document.getElementById(id).value = valor;
+}
+
+function set_inner(id,valor){
+   document.getElementById(id).innerHTML = valor;
 }
 
 function ajax_method()

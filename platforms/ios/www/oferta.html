@@ -6,7 +6,7 @@
           
         </a>
       </div>
-      <div class="center">Nome da empresa</div>
+      <div class="center" id="empresa_oferta">Nome da empresa</div>
       <div class="right">
         <a onclick="window.plugins.socialsharing.share('Nome da oferta No NOME DO APP, baixe e economize!', null, null, 'http://www.google.com')" class="link icon-only" id="refresh" style=" width:30px !important;">
           <i class="fa fa-share"></i>
@@ -17,20 +17,20 @@
 <div data-page="oferta" class="page">
   <div class="page-content">
 
-      <img src="img/pizza.jpg" width="100%">
+      <img src="img/pizza.jpg" width="100%" id="img_oferta">
 
-      <div style="position: absolute;right: 20px; z-index: 999999;top: 60px;color: white; background-color: rgba(255, 0, 0,0.85); padding: 10px; border-radius: 5px; font-weight: bold; ">
+      <div style="position: absolute;right: 20px; z-index: 999999;top: 60px;color: white; background-color: rgba(255, 0, 0,0.85); padding: 10px; border-radius: 5px; font-weight: bold; " id="desconto_cupom">
         20% off
       </div>
 
-      <p class="buttons-row" style="margin-left: 20px;margin-right: 20px;-webkit-margin-before:-30px !important; top: 100px;"><a href="#" class="button button-fill color-blue" style="font-weight: bold;z-index: 99; padding-top: 12px;padding-bottom: 37px; font-size: 18px;"> <i class="fa fa-cart-arrow-down" style="font-size: 20px;"></i> &nbsp&nbspPegar cupom</a></p>
+      <p class="buttons-row" style="margin-left: 20px;margin-right: 20px;-webkit-margin-before:-30px !important; top: 100px;"><a href="#" class="button button-fill color-blue" style="font-weight: bold;z-index: 99; padding-top: 12px;padding-bottom: 37px; font-size: 18px;" id="botao_cupom"> <i class="fa fa-cart-arrow-down" style="font-size: 20px;"></i> &nbsp&nbspPegar cupom</a></p>
 
       <div class="content-block" style="-webkit-margin-before:-20px !important; top: 100px">
         <div class="content-block-inner">
-         <p style="font-size: 18px;font-family: verdana;">Nome do cupom e todos os da bla bla </p>
-         <div style="font-size: 16px;color: #007aff;">Por: R$22,00 &nbsp<s style="color:gray">De: R$44,00</s></div>
+         <p style="font-size: 18px;font-family: verdana;" id="nome_cupom">Nome do cupom e todos os da bla bla </p>
+         <div style="font-size: 16px;color: #007aff;" id="precos_cupom">Por: R$22,00 &nbsp<s style="color:gray">De: R$44,00</s></div>
          <hr>
-           <p style="color:gray">
+           <p style="color:gray" id="info_cupom">
               <i class="fa fa-ticket"></i> 5 Restantes<br>
               <i class="fa fa-calendar"></i> Válido até 25/02/17
            </p>
@@ -39,14 +39,14 @@
 
        <div class="content-block-title">Descrição</div>
          <div class="content-block inset">
-            <div class="content-block-inner">
+            <div class="content-block-inner" id="desc_cupom">
               <p>Descrição do produto. LOREM IPSUM DOLOR SIT AMET</p>
             </div>
         </div>
 
         <div class="content-block-title">Regras</div>
          <div class="content-block inset">
-            <div class="content-block-inner">
+            <div class="content-block-inner" id="regras_cupom">
               <p>Regras do produto. LOREM IPSUM DOLOR SIT AMET</p>
             </div>
         </div>
@@ -58,19 +58,19 @@
             <li class="item-content">
               <div class="item-media"><i class="fa fa-university"></i></div>
               <div class="item-inner">
-                <div class="item-title">Nome da empresa</div>
+                <div class="item-title" id="empresa_cupom">Nome da empresa</div>
               </div>
             </li>
             <li>
-              <a href="#" onclick="window.open('tel:12345678', '_system');" class="item-link item-content">
+              <a href="#" onclick="window.open('tel:12345678', '_system');" class="item-link item-content" id="telefone_cupom">
               <div class="item-media"><i class="fa fa-phone"></i></div>
                 <div class="item-inner">
-                  <div class="item-title">Telefone da empresa</div>
+                  <div class="item-title" >Telefone da empresa</div>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" onclick="window.open('http://maps.apple.com/?ll=51.84,-8.30', '_system');" class="item-link item-content">
+              <a href="#" onclick="window.open('http://maps.apple.com/?ll=51.84,-8.30', '_system');" class="item-link item-content" id="endereco_cupom">
                 <div class="item-media"><i class="fa fa-map"></i></div>
                 <div class="item-inner">
                   <div class="item-title">Endereço</div>
