@@ -33,8 +33,20 @@ $$(document).on('pageInit', function (e) {
       document.getElementById('atend1').checked = true;
     }
 
+    if(page.name === 'index'){
+      setTimeout(function (){carregar_cupons(0,1,0,0,"");},150);      
+    }
+
     if(page.name === 'meus_cupons'){
       carregar_meus_cupons();
+    }
+
+    if(page.name === 'oferta'){
+      detalhes_cupom(page.query.id,page.query.titulo,page.query.desconto,page.query.preco_normal,page.query.preco_cupom,page.query.prazo,page.query.quantidade,page.query.nome_fantasia,page.query.caminho);
+    }
+
+    if(page.name === 'opiniao'){
+      document.getElementById('botao_avaliar').setAttribute("onclick", "avaliar("+page.query.id+")");
     }
 
 });
@@ -56,8 +68,30 @@ $$('.infinite-scroll').on('infinite', function () {
 document.getElementById('cupons').innerHTML = '';
 carregar_cupons(0,1,0,0,"");
 
+function avaliar(id){
+  json_dados = ajax_method(false,'usuario.usuario.avaliar',id,pegar_valor(document.getElementsByName('produto')),pegar_valor(document.getElementsByName('atendimento')),pegar_valor(document.getElementsByName('ambiente')),document.getElementsByName('comentario').value);
+
+  if (json_dados){
+    myApp.alert("Avaliação enviada com sucesso. Obrigado");
+    mainView.router.back();
+    mainView.router.refreshPage();
+  }else{
+    myApp.alert("Não foi possível enviar sua avaliação, tente novamente.");
+  }
+}
+
+function pegar_valor(campo){
+  for (var i = 0, length = campo.length; i < length; i++) {
+      if (campo[i].checked) {
+          return (campo[i].value);
+      }
+  }
+}
+
 function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id){
   myApp.showPreloader();
+  if (ultimo_carregado == 0) 
+    document.getElementById('cupons').innerHTML = ' ';
   setTimeout(function () {
     json_dados = ajax_method(false,'usuario.select_cupons',localStorage.getItem("user_id"),cidade_id,delivery,pagamento,tipo_id,ultimo_carregado);
     var cupons = JSON.parse(json_dados);
@@ -79,7 +113,7 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
                                                           '<div class="facebook-name" style="font-size: 18px; color: black; font-family: tahoma;font-weight: bold">'+cupons[i].titulo+'</div>'+
                                                        ' </div>'+
                                                            '<div class="facebook-name" style="margin-left: 15px;">'+cupons[i].nome_fantasia+'</div>'+
-                                                        '<div class="card-content"><a href="#" onclick="detalhes_cupom('+cupons[i].id+',`'+cupons[i].titulo+'`,'+desconto+',`'+cupons[i].preco_normal+'`,`'+cupons[i].preco_cupom+'`,`'+cupons[i].prazo+'`,'+cupons[i].quantidade+',`'+cupons[i].nome_fantasia+'`,`http://www.olar.esy.es/'+cupons[i].caminho+'`);"><img src="http://www.olar.esy.es/'+cupons[i].caminho+'" width="100%">'+
+                                                        '<div class="card-content"><a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.olar.esy.es/'+cupons[i].caminho+'"><img src="http://www.olar.esy.es/'+cupons[i].caminho+'" width="100%">'+
                                                           '<div style="position:absolute; right: 20px; z-index: 999999;top: 10px;color: white; background-color: rgba(255, 0, 0,0.85); padding: 10px; border-radius: 5px; font-weight: bold; ">'+
                                                             '<i class="fa fa-ticket"></i> '+cupons[i].quantidade+
                                                             '</div>'+
@@ -105,7 +139,6 @@ function carregar_meus_cupons(){
     document.getElementById('meus_cupons_historico').innerHTML = ' ';
     var batatinea = ' ';
     var last = ' ';
-    alert(json_dados);
 
     for (i = 0;i < cupons.length ; i++) {
 
@@ -124,7 +157,7 @@ function carregar_meus_cupons(){
       if (cupons[i].estado == 0) 
         batatinea += '<a href="#" class="item-content item-link" style="border-left: thick solid #007aff;">';
       if (cupons[i].estado == 1) 
-        batatinea += '<a href="#" class="item-content item-link" style="border-left: thick solid #FFa500;">';
+        batatinea += '<a href="opiniao.html?id='+cupons[i].id+'" class="item-content item-link" style="border-left: thick solid #FFa500;">';
       if (cupons[i].estado == 2)
         batatinea += '<a href="#" class="item-content item-link" style="border-left: thick solid #FF0000;">'; 
       if (cupons[i].estado == 3) 
@@ -189,7 +222,13 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
        }
 
      if (ok) {
-      document.getElementById('botao_cupom').setAttribute('onclick',"pegar_cupom("+id+");");
+      if (cupom.detalhes.estado != 0) {
+        document.getElementById('botao_cupom').setAttribute('onclick',"pegar_cupom("+id+");");
+       }else{
+        document.getElementById('botao_cupom').innerHTML = '<i class="fa fa-delete" style="font-size: 20px;"></i> &nbsp&nbspCupom Fora de Aquisição';
+        document.getElementById('botao_cupom').setAttribute('disabled'," ");
+        document.getElementById('botao_cupom').setAttribute('class',"button button-fill color-red bttnb");
+       }
      }else{
       document.getElementById('botao_cupom').innerHTML = '<i class="fa fa-cart-arrow-down" style="font-size: 20px;"></i> &nbsp&nbspCupom Adquirido';
       document.getElementById('botao_cupom').setAttribute('disabled'," ");
