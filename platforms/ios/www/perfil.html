@@ -46,7 +46,7 @@
                 <div class="item-media"><i class="fa fa-phone"></i></div>
                 <div class="item-inner">
                   <div class="item-input">
-                    <input type="email" placeholder="Telefone" id="user_telefone">
+                    <input type="number" placeholder="Telefone" id="user_telefone">
                   </div>
                 </div>
               </div>
@@ -58,8 +58,8 @@
                   <div class="item-inner">
                     <div class="item-input">
                       <select id="user_genero">
-                        <option value="1">Masculino</option>
                         <option value="0">Feminino</option>
+                        <option value="1">Masculino</option>
                       </select>
                     </div>
                   </div>
@@ -77,7 +77,7 @@
               </div>
             </li>
           </ul>
-          <p><a href="#" class="button button-fill color-green" style="margin-left: 20px;margin-right: 20px;">Salvar</a></p>
+          <p><a href="#" class="button button-fill color-green" style="margin-left: 20px;margin-right: 20px;" onclick="alterar_perfil();">Salvar</a></p>
         </div>
 
         <div class="content-block-title">Redes sociais</div>
@@ -128,7 +128,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="item-link item-content" style="background-color: coral">
+              <a href="#" class="item-link item-content" style="background-color: coral" onclick="logout();">
                 <div class="item-media"><i class="fa fa-sign-out"></i></div>
                 <div class="item-inner">
                   <div class="item-title">Logout</div>

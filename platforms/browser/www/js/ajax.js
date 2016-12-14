@@ -25,28 +25,44 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+if (localStorage.getItem("user_id") == null || localStorage.getItem("user_id") == 'null') 
+      carregar_login();
+    else{
+      document.getElementById('cupons').innerHTML = '';
+      carregar_cupons(0,1,0,0,"");
+    }
+
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 
-    if(page.name === 'opiniao'){
-      document.getElementById('prod1').checked = true;
-      document.getElementById('atend1').checked = true;
-    }
+    if (localStorage.getItem("user_id") == null) {
+      mainView.router.back();
+      carregar_login();
+    }else{
+        if(page.name === 'opiniao'){
+          document.getElementById('prod1').checked = true;
+          document.getElementById('atend1').checked = true;
+        }
 
-    if(page.name === 'index'){
-      setTimeout(function (){carregar_cupons(0,1,0,0,"");},150);      
-    }
+        if(page.name === 'index'){
+          setTimeout(function (){carregar_cupons(0,1,0,0,"");},150);     
+        }
 
-    if(page.name === 'meus_cupons'){
-      carregar_meus_cupons();
-    }
+        if(page.name === 'meus_cupons'){
+          carregar_meus_cupons();
+        }
 
-    if(page.name === 'oferta'){
-      detalhes_cupom(page.query.id,page.query.titulo,page.query.desconto,page.query.preco_normal,page.query.preco_cupom,page.query.prazo,page.query.quantidade,page.query.nome_fantasia,page.query.caminho);
-    }
+        if(page.name === 'oferta'){
+          detalhes_cupom(page.query.id,page.query.titulo,page.query.desconto,page.query.preco_normal,page.query.preco_cupom,page.query.prazo,page.query.quantidade,page.query.nome_fantasia,page.query.caminho);
+        }
 
-    if(page.name === 'opiniao'){
-      document.getElementById('botao_avaliar').setAttribute("onclick", "avaliar("+page.query.id+")");
+        if(page.name === 'opiniao'){
+          detalhes_opiniao(page.query.id,page.query.titulo,page.query.desconto,page.query.preco_normal,page.query.preco_cupom,page.query.prazo,page.query.nome_fantasia,page.query.caminho);
+        }
+
+        if (page.name === 'perfil') {
+          carregar_perfil();
+        }
     }
 
 });
@@ -65,16 +81,13 @@ $$('.infinite-scroll').on('infinite', function () {
 
 });
 
-document.getElementById('cupons').innerHTML = '';
-carregar_cupons(0,1,0,0,"");
-
 function avaliar(id){
-  json_dados = ajax_method(false,'usuario.usuario.avaliar',id,pegar_valor(document.getElementsByName('produto')),pegar_valor(document.getElementsByName('atendimento')),pegar_valor(document.getElementsByName('ambiente')),document.getElementsByName('comentario').value);
-
+  json_dados = ajax_method(false,'usuario.avaliar',id,pegar_valor(document.getElementsByName('produto')),pegar_valor(document.getElementsByName('atendimento')),pegar_valor(document.getElementsByName('ambiente')),document.getElementById('comentario').value);
   if (json_dados){
     myApp.alert("Avaliação enviada com sucesso. Obrigado");
     mainView.router.back();
-    mainView.router.refreshPage();
+    setTimeout(function (){mainView.router.refreshPage();},150);
+    
   }else{
     myApp.alert("Não foi possível enviar sua avaliação, tente novamente.");
   }
@@ -100,13 +113,9 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
 
       desconto = Math.round(100 - (cupons[i].preco_cupom * 100 / cupons[i].preco_normal));
 
-      if (cupons[i].preco_cupom % 1 == 0) {
-        cupons[i].preco_cupom  =  cupons[i].preco_cupom + ',00';
-      }
+      cupons[i].preco_cupom  =  parseFloat(cupons[i].preco_cupom).toFixed(2);
 
-      if (cupons[i].preco_normal % 1 == 0) {
-        cupons[i].preco_normal  =  cupons[i].preco_normal + ',00';
-      }
+      cupons[i].preco_normal  =  parseFloat(cupons[i].preco_normal).toFixed(2);
 
       document.getElementById('cupons').innerHTML += '<div class="card facebook-card">'+
                                                         '<div class="card-header no-border" style="padding-bottom: 1px;">'+
@@ -139,12 +148,13 @@ function carregar_meus_cupons(){
     document.getElementById('meus_cupons_historico').innerHTML = ' ';
     var batatinea = ' ';
     var last = ' ';
+    var lucro = 0;
 
     for (i = 0;i < cupons.length ; i++) {
 
       if (cupons[i].data_resgate != last) {
           last = cupons[i].data_resgate;
-          batatinea +=  '<div class="content-block-title" ><i class="fa fa-calendar"></i>'+cupons[i].data_resgate+'</div>';
+          batatinea +=  '<div class="content-block-title" ><i class="fa fa-calendar"></i> '+cupons[i].data_resgate+'</div>';
       }
 
       desconto = Math.round(100 - (cupons[i].preco_cupom * 100 / cupons[i].preco_normal));
@@ -154,14 +164,18 @@ function carregar_meus_cupons(){
                                                                          '<div class="list-block media-list">'+
                                                                             '<ul>'+
                                                                               '<li>';
+      if (cupons[i].estado == -1)
+        batatinea += '<a href="#" class="item-content item-link" style="border-left: thick solid #FF0000;">'; 
       if (cupons[i].estado == 0) 
         batatinea += '<a href="#" class="item-content item-link" style="border-left: thick solid #007aff;">';
-      if (cupons[i].estado == 1) 
-        batatinea += '<a href="opiniao.html?id='+cupons[i].id+'" class="item-content item-link" style="border-left: thick solid #FFa500;">';
-      if (cupons[i].estado == 2)
-        batatinea += '<a href="#" class="item-content item-link" style="border-left: thick solid #FF0000;">'; 
-      if (cupons[i].estado == 3) 
+      if (cupons[i].estado == 1) {
+        batatinea += '<a href="opiniao.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.olar.esy.es/'+cupons[i].caminho+'" class="item-content item-link" style="border-left: thick solid #FFa500;">';
+        lucro += cupons[i].preco_normal - cupons[i].preco_cupom;
+      }
+      if (cupons[i].estado == 2) {
         batatinea += '<a href="#" class="item-content item-link" style="border-left: thick solid #00FF00;">';
+        lucro += cupons[i].preco_normal - cupons[i].preco_cupom;
+      }
 
       batatinea +=                                                     '<div class="item-inner">'+
                                                                         '<div class="item-title-row">'+
@@ -176,26 +190,81 @@ function carregar_meus_cupons(){
                                                            ' </div>'+
                                                             '<div class="card-footer">'+
                                                               '<span>'+desconto+'% Off</span>';
+      if (cupons[i].estado == -1)
+        batatinea += '<span>Cupom Não utilizado</span>';
       if (cupons[i].estado == 0)
         batatinea += '<span>Cupom aguardando resgate</span>';
       if (cupons[i].estado == 1)
         batatinea += '<span>Avaliação pendente</span>';
       if (cupons[i].estado == 2)
-        batatinea += '<span>Cupom Não utilizado</span>';
-      if (cupons[i].estado == 3)
         batatinea += '<span>Cupom Finalizado</span>';
 
       batatinea +=                                                       '</div>'+
                                                                        '</div>';
     }   
     document.getElementById('meus_cupons_historico').innerHTML = batatinea;
+    document.getElementById('economia').innerHTML = 'Você já economizou R$'+parseFloat(lucro).toFixed(2);
   myApp.hidePreloader();
 },100);
 }
 
+function carregar_login(){
+  $$("#ba").hide();
+  document.getElementById('peige').innerHTML = '<div data-page="login-screen" class="page no-navbar">'+
+                                                '<div class="page-content login-screen-content" style="background-image:url(\'img/panc.jpg\'); background-size: cover">'+
+                                                '<div style="padding-bottom: 5px; max-width: 480px; margin: auto;">'+
+                                                  '<div class="login-screen-title" style="margin: 25px auto; "><img src="img/logo.png" width="150px"></div>'+
+                                                    '<div class="list-block">'+
+                                                      '<ul>'+
+                                                        '<li class="item-content" style="padding-right: 15px;">'+
+                                                          '<div class="item-inner" style="padding-right: 0;">'+
+                                                              '<div class="item-input transp">'+
+                                                                '<input type="email" name="login_email" id="login_email" placeholder="Email" required style="padding-left: 10px; color: white">'+
+                                                              '</div>'+
+                                                          '</div>'+
+                                                        '</li>'+
+                                                        '<li class="item-content" style="padding-right: 15px;">'+
+                                                          '<div class="item-inner" style="padding-right: 0;">'+
+                                                              '<div class="item-input transp">'+
+                                                                '<input type="password" name="login_senha" id="login_senha" placeholder="Senha" required style="padding-left: 10px; color: white">'+
+                                                              '</div>'+
+                                                          '</div>'+
+                                                        '</li>'+
+                                                      '</ul>'+
+                                                    '</div>'+
+                                                    '<div class="list-block-label" style="padding-left:15px;padding-right:15px;">'+
+                                                        '<p><a onclick="login();" class="button button-fill color-orange">Entrar</a></p>'+
+                                                        '<p><a href="cadastrar.html" class="link">Não possui cadastro? Clique aqui</a></p>'+
+                                                        '<p><a href="#" class="link">Esqueceu sua senha?</a></p>'+
+                                                    '</div>'+
+                                                    '</div>'+
+                                                  '</div>'+
+                                                '</div>'+
+                                                '</div>'+
+                                              '</div>';
+}
+
+function detalhes_opiniao(id,nome,desconto,preco_ini,preco_desc,prazo,empresa,imagem){
+ myApp.showPreloader();
+  setTimeout(function () {
+    json_dados = ajax_method(false,'usuario.select_detalhes_cupom',id);
+    if(json_dados){
+      var cupom = JSON.parse(json_dados);
+      set_inner("opiniao_empresa",empresa);
+       document.getElementById('opiniao_imagem').setAttribute("src", imagem);
+       set_inner("opiniao_desconto",'<i class="fa fa-cart-arrow-down" style="font-size: 20px;"></i> &nbsp&nbsp'+desconto+'% off');
+       set_inner("opiniao_titulo",nome);
+       set_inner("opiniao_precos",'Por: R$'+parseFloat(preco_desc).toFixed(2)+' &nbsp<s style="color:gray">De: R$'+parseFloat(preco_ini).toFixed(2)+'</s>');
+       document.getElementById('botao_avaliar').setAttribute("onclick", "avaliar("+id+")");
+    }else{
+      myApp.alert("Não foi possível carregar os detalhes do cupom. Tente novamente.");
+    }
+    myApp.hidePreloader();
+  },100);
+}
+
 function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,empresa,imagem){
   myApp.showPreloader();
-  mainView.router.loadPage('oferta.html');
   setTimeout(function () {
     json_dados = ajax_method(false,'usuario.select_detalhes_cupom',id);
     if(json_dados){
@@ -222,7 +291,7 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
        }
 
      if (ok) {
-      if (cupom.detalhes.estado != 0) {
+      if (cupom.detalhes.estado == 0) {
         document.getElementById('botao_cupom').setAttribute('onclick',"pegar_cupom("+id+");");
        }else{
         document.getElementById('botao_cupom').innerHTML = '<i class="fa fa-delete" style="font-size: 20px;"></i> &nbsp&nbspCupom Fora de Aquisição';
@@ -246,34 +315,36 @@ function login()
 {
   var email = document.getElementById("login_email").value;
   var senha = document.getElementById("login_senha").value;
-  var id = null;
+  var id = 0 ;
 
   myApp.showPreloader();
   setTimeout(function () {
-    id = ajax_method(false,'login',email,senha);
+    id = ajax_method(false,'usuario.login',email,senha);
 
-    if (id != 0)
+    if (id != 0 && id != null && id != 'null')
     {
       localStorage.setItem("user_id",id);
+      $$("#ba").show();
+      location.reload();
     }
     else
     {
         myApp.alert("Email ou senha não correspondem!");
     }
     myApp.hidePreloader();
-    mainView.refreshPage();
   },100);
 }
 
 function logout() {
-  localStorage.removeItem("login_id");
+  localStorage.removeItem("user_id");
   mainView.router.back();
+  carregar_login();
 }
 
 function alterar_senha(){
   myApp.showPreloader();
   setTimeout(function () {
-    if (document.getElementById('usuario_senha').value == document.getElementById('usuario_senha2').value){
+    if (document.getElementById('usuario_senha1').value == document.getElementById('usuario_senha2').value){
       json_dados = ajax_method(false,'usuario.update_senha',localStorage.getItem("user_id"),document.getElementById('usuario_senha_antiga').value,document.getElementById('usuario_senha1').value);
       if (!json_dados){
         myApp.hidePreloader();
@@ -282,7 +353,6 @@ function alterar_senha(){
       else{
         myApp.hidePreloader();
         myApp.alert("Senha alterada com sucesso!");
-        mainView.router.back();
       }
     }
     else{
@@ -305,11 +375,11 @@ function carregar_perfil(){
           myApp.alert("Não foi possível carregar o seu perfil, por favor, tente novamente.");
         }else{
           var perfil = JSON.parse(json_dados);
-          document.getElementById("user_nome").value = perfil[0].nome;
-          document.getElementById("user_email").value = perfil[0].email;
-          document.getElementById("user_telefone").value = perfil[0].telefone;
-          document.getElementById("user_genero").value = perfil[0].genero;
-          document.getElementById("user_nasc").value = perfil[0].nascimento;
+          document.getElementById("user_nome").value = perfil.nome;
+          document.getElementById("user_email").value = perfil.email;
+          document.getElementById("user_telefone").value = perfil.celular;
+          document.getElementById("user_genero").value = perfil.genero;
+          document.getElementById("user_nasc").value = perfil.nascimento;
           myApp.hidePreloader();
         }
       }
