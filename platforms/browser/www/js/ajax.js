@@ -35,7 +35,7 @@ if (localStorage.getItem("user_id") == null || localStorage.getItem("user_id") =
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 
-    if (localStorage.getItem("user_id") == null) {
+    if (localStorage.getItem("user_id") === null && page.name != "cadastro") {
       mainView.router.back();
       carregar_login();
     }else{
@@ -72,14 +72,38 @@ var ptrContent = $$('.pull-to-refresh-content');
 // Add 'refresh' listener on it
 ptrContent.on('refresh', function (e) {
     // Emulate 2s loading
-    setTimeout(function () {
-      myApp.pullToRefreshDone();
-    },2000);
+    carregar_cupons(0,1,0,0,"");
+    myApp.pullToRefreshDone();
 });
 
 $$('.infinite-scroll').on('infinite', function () {
 
 });
+
+function cadastro(){
+  if(document.getElementById("cad_senha").value == document.getElementById("cad_senha2").value && document.getElementById("cad_nome").value.length > 2 && document.getElementById("cad_email").value.length > 2 && document.getElementById("cad_senha").value.length > 2 && document.getElementById("cad_senha2").value.length > 2  && document.getElementById("cad_telefone").value.length > 2 && document.getElementById("cad_nasc").value.length > 2 )
+    {  
+      myApp.showPreloader("Realizando cadastro...");
+      setTimeout(function () {
+        var adduser = ajax_method(false,'usuario.insert',document.getElementById("cad_nome").value,document.getElementById("cad_email").value,document.getElementById("cad_senha").value,document.getElementById("cad_telefone").value,document.getElementById("cad_genero").value,document.getElementById("cad_nasc").value);
+        myApp.hidePreloader();
+        if(adduser != 0)
+        {
+          localStorage.setItem("user_id",adduser);
+          mainView.router.back();
+          setTimeout(function () {
+          location.reload();},50);
+        }
+        else{
+          myApp.alert("Seu perfil não pôde ser criado, reveja suas informações ou sua conexão por favor.");
+        }
+        myApp.hidePreloader();
+      },500);
+    }
+    else{
+      myApp.alert("Senhas não correspondem ou campo deixado em branco!");
+    }
+}
 
 function avaliar(id){
   json_dados = ajax_method(false,'usuario.avaliar',id,pegar_valor(document.getElementsByName('produto')),pegar_valor(document.getElementsByName('atendimento')),pegar_valor(document.getElementsByName('ambiente')),document.getElementById('comentario').value);
@@ -117,7 +141,7 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
 
       cupons[i].preco_normal  =  parseFloat(cupons[i].preco_normal).toFixed(2);
 
-      document.getElementById('cupons').innerHTML += '<div class="card facebook-card">'+
+      document.getElementById('cupons').innerHTML += '<div class="card facebook-card" style="margin:0; margin-top:10px;">'+
                                                         '<div class="card-header no-border" style="padding-bottom: 1px;">'+
                                                           '<div class="facebook-name" style="font-size: 18px; color: black; font-family: tahoma;font-weight: bold">'+cupons[i].titulo+'</div>'+
                                                        ' </div>'+
@@ -154,7 +178,8 @@ function carregar_meus_cupons(){
 
       if (cupons[i].data_resgate != last) {
           last = cupons[i].data_resgate;
-          batatinea +=  '<div class="content-block-title" ><i class="fa fa-calendar"></i> '+cupons[i].data_resgate+'</div>';
+          dat = NData(cupons[i].data_resgate);
+          batatinea +=  '<div class="content-block-title" ><i class="fa fa-calendar"></i> '+dat+'</div>';
       }
 
       desconto = Math.round(100 - (cupons[i].preco_cupom * 100 / cupons[i].preco_normal));
@@ -208,10 +233,51 @@ function carregar_meus_cupons(){
 },100);
 }
 
+function novaData(n) {
+  this.length = n
+  return this
+}
+NMes = new novaData(12)
+NMes[1] = "Janeiro"
+NMes[2] = "Fevereiro"
+NMes[3] = "Março"
+NMes[4] = "Abril"
+NMes[5] = "Maio"
+NMes[6] = "Junho"
+NMes[7] = "Julho"
+NMes[8] = "Agosto"
+NMes[9] = "Setembro"
+NMes[10] = "Outubro"
+NMes[11] = "Novembro"
+NMes[12] = "Dezembro"
+DDias = new novaData(7)
+DDias[1] = "Domingo"
+DDias[2] = "Segunda"
+DDias[3] = "Terça"
+DDias[4] = "Quarta"
+DDias[5] = "Quinta"
+DDias[6] = "Sexta"
+DDias[7] = "Sábado"
+
+function NData(data) {
+  cDate = new Date(data)
+  var Dia = DDias[cDate.getDay() + 1]
+  var Mes = NMes[cDate.getMonth() + 1]
+  msie4 = ((navigator.appName == "Microsoft Internet Explorer")
+        && (parseInt(navigator.appVersion) >= 4 ));
+  if (msie4) {
+      var ano = cDate.getYear()
+  }
+  else {
+       var ano = cDate.getYear() +1900
+  }
+  return Dia + ", " + cDate.getDate() + " de " + Mes + " " +  " de " + ano
+}
+
 function carregar_login(){
   $$("#ba").hide();
   document.getElementById('peige').innerHTML = '<div data-page="login-screen" class="page no-navbar">'+
-                                                '<div class="page-content login-screen-content" style="background-image:url(\'img/panc.jpg\'); background-size: cover">'+
+                                                '<div class="page-content login-screen-content" style="background-image:url(\'img/pancue.jpg\');background-size: 100%">'+
                                                 '<div style="padding-bottom: 5px; max-width: 480px; margin: auto;">'+
                                                   '<div class="login-screen-title" style="margin: 25px auto; "><img src="img/logo.png" width="150px"></div>'+
                                                     '<div class="list-block">'+
@@ -234,7 +300,7 @@ function carregar_login(){
                                                     '</div>'+
                                                     '<div class="list-block-label" style="padding-left:15px;padding-right:15px;">'+
                                                         '<p><a onclick="login();" class="button button-fill color-orange">Entrar</a></p>'+
-                                                        '<p><a href="cadastrar.html" class="link">Não possui cadastro? Clique aqui</a></p>'+
+                                                        '<p><a href="cadastrar.html" class="">Não possui cadastro? Clique aqui</a></p>'+
                                                         '<p><a href="#" class="link">Esqueceu sua senha?</a></p>'+
                                                     '</div>'+
                                                     '</div>'+
@@ -269,6 +335,9 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
     json_dados = ajax_method(false,'usuario.select_detalhes_cupom',id);
     if(json_dados){
       var cupom = JSON.parse(json_dados);
+            for (i = 0; i < cupom.tipos.length; i++) {
+              //document.getElementById('tipos').innerHTML += '<div class="chip"><div class="chip-label">'+cupom.tipos[i].nome+'</div></div>';
+            }
       set_inner("empresa_oferta",empresa);
        document.getElementById('img_oferta').setAttribute("src", imagem);
        set_inner("desconto_cupom",desconto+'% off');

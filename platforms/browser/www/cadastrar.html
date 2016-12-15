@@ -2,8 +2,8 @@
     <div class="navbar-inner">
     </div>
   </div>
-<div data-page="cadastro" class="page no-navbar no-toolbar no-swipeback">
-  <div class="page-content login-screen-content" style="background-image:url('img/burg.jpg'); background-size: cover">
+<div data-page="cadastro" class="page no-navbar">
+  <div class="page-content login-screen-content" style="background-image:url('img/burgue.jpg');background-size: 100%">
     <div class="login-screen-title" style="color:white"><img src="img/logo.png" width="100px"></div>
       <div class="list-block">
         <ul>
@@ -42,11 +42,28 @@
               </div>
             </div>
           </li>
+          <li class="item-content" style="padding-right: 15px;">
+            <div class="item-inner" style="padding-right: 0;">
+              <div class="item-input transp">
+                <input name="cad_nasc" id="cad_nasc" placeholder="Data de nascimento" type="text" onfocus="(this.type='date'); setTimeout(function(){document.getElementById('cad_nasc').click();},50);" required style="padding-left: 10px; color: white">
+              </div>
+            </div>
+          </li>
+          <li class="item-content" style="padding-right: 15px;">
+            <div class="item-inner" style="padding-right: 0;">
+              <div class="item-input transp">
+                <select id="cad_genero" style="padding-left: 10px; color: white">
+                        <option value="0">Feminino</option>
+                        <option value="1">Masculino</option>
+                </select>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
         <div class="list-block-label" style="padding-left:15px;padding-right:15px;">
           <p><a onclick="cadastro();" class="button button-fill" id="cadastro_cadastrar">Cadastrar</a></p>
-          <p><a href="#" class="back link" id="cadastro_login">Já possui cadastro? Clique aqui!</a></p>
+          <p><a href="#" onclick="window.history.go(-1)" id="cadastro_login">Já possui cadastro? Clique aqui!</a></p>
         </div>
       </div>
   </div>
