@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "486879908931",
-    "firebase_url": "https://appcupons-151116.firebaseio.com",
-    "project_id": "appcupons-151116",
-    "storage_bucket": "appcupons-151116.appspot.com"
+    "project_number": "372116976347",
+    "firebase_url": "https://clube-de-ofertas.firebaseio.com",
+    "project_id": "clube-de-ofertas",
+    "storage_bucket": "clube-de-ofertas.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486879908931:android:288a226168781e5a",
+        "mobilesdk_app_id": "1:372116976347:android:f7c25d0df78c70c4",
         "android_client_info": {
-          "package_name": "com.nomedoapp"
+          "package_name": "com.clubedeofertas"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486879908931-51p0c8vtk61vh9sgokuktablqtbplo9t.apps.googleusercontent.com",
+          "client_id": "372116976347-rqdt950jrgo5026f1unj5hsrhhppc047.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAgzs5FzcZ1cBJSDO1sNbXmaOhgycCfU6g"
+          "current_key": "AIzaSyBAD6FALe_t-BFwEd72pjvaVH77XnvKqM0"
         }
       ],
       "services": {

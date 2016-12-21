@@ -1,12 +1,14 @@
 var xhrTimeout=1000;
-var url='http://olar.esy.es/';
+var url='http://noxgames.com.br/clube/service/';
 var urn = 'urn:service';
+var ultimo_carregado = 0;
+var glb = 0;
 
 var myApp = new Framework7({
   pushState: true,
   animatePages: true,
   swipeBackPage: true,
-  modalTitle: "Demo",
+  modalTitle: "Clube de Ofertas",
   modalButtonCancel: "Cancelar",
   modalPreloaderTitle: "Carregando...",
   smartSelectBackText: 'Voltar',
@@ -71,13 +73,19 @@ var ptrContent = $$('.pull-to-refresh-content');
  
 // Add 'refresh' listener on it
 ptrContent.on('refresh', function (e) {
-    // Emulate 2s loading
-    carregar_cupons(0,1,0,0,"");
+    ultimo_carregado = 0;
+    carregar_cupons(ultimo_carregado,1,0,0,"");
     myApp.pullToRefreshDone();
 });
 
 $$('.infinite-scroll').on('infinite', function () {
-
+  if (glb == 0) {
+    ultimo_carregado += 5;
+    glb = 1;
+    carregar_cupons(ultimo_carregado,1,0,0,"");
+    setTimeout(function(){glb = 0;},5000);
+  }    
+    
 });
 
 function cadastro(){
@@ -110,7 +118,7 @@ function avaliar(id){
   if (json_dados){
     myApp.alert("Avaliação enviada com sucesso. Obrigado");
     mainView.router.back();
-    setTimeout(function (){mainView.router.refreshPage();},150);
+    setTimeout(function (){location.reload();},150);
     
   }else{
     myApp.alert("Não foi possível enviar sua avaliação, tente novamente.");
@@ -132,6 +140,10 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
   setTimeout(function () {
     json_dados = ajax_method(false,'usuario.select_cupons',localStorage.getItem("user_id"),cidade_id,delivery,pagamento,tipo_id,ultimo_carregado);
     var cupons = JSON.parse(json_dados);
+
+    if (cupons.length >0) {
+      glb = 0;
+    }
 
     for (i = 0; i < cupons.length ; i++) {
 
@@ -155,7 +167,7 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
                                                         '<div class="card-footer no-border">'+
                                                          ' <p style="font-size: 15px;color: coral;">'+desconto+'% off</p>'+
                                                           '<center><diva style="font-size: 20px;color: #007aff;">R$'+cupons[i].preco_cupom+'</diva><br><s>R$'+cupons[i].preco_normal+'</s></center>'+
-                                                          '<a href="oferta.html?id='+cupons[i].id+'" class="link" style="font-size: 23px;"><i class="fa fa-cart-arrow-down"></i></a>'+
+                                                          '<a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.olar.esy.es/'+cupons[i].caminho+'" class="link" style="font-size: 23px;"><i class="fa fa-cart-arrow-down"></i></a>'+
                                                         '</div>'+
                                                      ' </div>';
       }    
@@ -300,7 +312,7 @@ function carregar_login(){
                                                     '</div>'+
                                                     '<div class="list-block-label" style="padding-left:15px;padding-right:15px;">'+
                                                         '<p><a onclick="login();" class="button button-fill color-orange">Entrar</a></p>'+
-                                                        '<p><a href="cadastrar.html" class="">Não possui cadastro? Clique aqui</a></p>'+
+                                                        '<p><a href="cadastrar.html" class="link">Não possui cadastro? Clique aqui</a></p>'+
                                                         '<p><a href="#" class="link">Esqueceu sua senha?</a></p>'+
                                                     '</div>'+
                                                     '</div>'+
@@ -336,7 +348,7 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
     if(json_dados){
       var cupom = JSON.parse(json_dados);
             for (i = 0; i < cupom.tipos.length; i++) {
-              //document.getElementById('tipos').innerHTML += '<div class="chip"><div class="chip-label">'+cupom.tipos[i].nome+'</div></div>';
+              document.getElementById('tipos').innerHTML += '<div class="chip" style="color: #fff;background: rgba(0,0,0,.37);display: inline-block;height: 23px;line-height: 23px;border-radius: 5px;padding: 0 6px;"><div class="chip-label">'+cupom.tipos[i].nome+'</div></div>';
             }
       set_inner("empresa_oferta",empresa);
        document.getElementById('img_oferta').setAttribute("src", imagem);
@@ -404,10 +416,17 @@ function login()
   },100);
 }
 
+function oloco(){
+   window.history.go(-1);
+   setTimeout(function(){location.reload();},200);
+   
+}
+
 function logout() {
   localStorage.removeItem("user_id");
   mainView.router.back();
   carregar_login();
+  location.reload();
 }
 
 function alterar_senha(){
