@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "372116976347",
-    "firebase_url": "https://clube-de-ofertas.firebaseio.com",
-    "project_id": "clube-de-ofertas",
-    "storage_bucket": "clube-de-ofertas.appspot.com"
+    "project_number": "810246105636",
+    "firebase_url": "https://clube-br.firebaseio.com",
+    "project_id": "clube-br",
+    "storage_bucket": "clube-br.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:372116976347:android:f7c25d0df78c70c4",
+        "mobilesdk_app_id": "1:810246105636:android:eba54226e4b60683",
         "android_client_info": {
-          "package_name": "com.clubedeofertas"
+          "package_name": "br.com.clubedeofertas"
         }
       },
       "oauth_client": [
         {
-          "client_id": "372116976347-rqdt950jrgo5026f1unj5hsrhhppc047.apps.googleusercontent.com",
+          "client_id": "810246105636-9si5qeljkihrbq43s88ott658n24oag2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBAD6FALe_t-BFwEd72pjvaVH77XnvKqM0"
+          "current_key": "AIzaSyBuwhxa_1Foq5R1WdBDrABEZbEkKJ3A0bI"
         }
       ],
       "services": {

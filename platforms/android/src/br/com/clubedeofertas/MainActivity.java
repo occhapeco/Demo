@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.clubedeofertas;
+package br.com.clubedeofertas;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
