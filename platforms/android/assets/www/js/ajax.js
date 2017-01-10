@@ -30,8 +30,8 @@ var mainView = myApp.addView('.view-main', {
 if (localStorage.getItem("user_id") == null || localStorage.getItem("user_id") == 'null') 
       carregar_login();
     else{
-      document.getElementById('cupons').innerHTML = '';
-      carregar_cupons(0,1,0,0,"");
+      //document.getElementById('cupons').innerHTML = '';
+      //carregar_cupons(0,1,0,0,"");
     }
 
 $$(document).on('pageInit', function (e) {
@@ -47,7 +47,7 @@ $$(document).on('pageInit', function (e) {
         }
 
         if(page.name === 'index'){
-          setTimeout(function (){carregar_cupons(0,1,0,0,"");},150);     
+         //setTimeout(function (){carregar_cupons(0,1,0,0,"");},150);     
         }
 
         if(page.name === 'meus_cupons'){
@@ -74,7 +74,7 @@ var ptrContent = $$('.pull-to-refresh-content');
 // Add 'refresh' listener on it
 ptrContent.on('refresh', function (e) {
     ultimo_carregado = 0;
-    carregar_cupons(ultimo_carregado,1,0,0,"");
+    //carregar_cupons(ultimo_carregado,1,0,0,"");
     myApp.pullToRefreshDone();
 });
 
@@ -82,7 +82,7 @@ $$('.infinite-scroll').on('infinite', function () {
   if (glb == 0) {
     ultimo_carregado += 5;
     glb = 1;
-    carregar_cupons(ultimo_carregado,1,0,0,"");
+    //carregar_cupons(ultimo_carregado,1,0,0,"");
     setTimeout(function(){glb = 0;},5000);
   }    
     

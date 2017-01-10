@@ -25,19 +25,13 @@
       <!-- Your main view, should have "view-main" class-->
       <div class="view view-main navbar-through">
         <div class="navbar" id="ba">
-          <div class="navbar-inner" style="/*background-color: rgb(88,107,233);*/">
+          <div class="navbar-inner" style="background-color: rgb(245,147,0);">
               <div class="left" style="/*font-weight: bold;color: white*/">
-                 &nbsp&nbsp&nbsp&nbsp&nbspClube de Ofertas
               </div>
-              <div class="center"></div>
+              <div class="center" style="font-weight: bold;color:white">Chapecó</div>
               <div class="right">
-                <a href="meus_cupons.html" class="link icon-only">
-                    <i class="fa fa-ticket"></i>
-                </a>
-                 <a href="perfil.html" class="link icon-only">
-                    <i class="fa fa-cog"></i>
-                </a>
               </div>
+              
           </div>
        </div>
         <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
@@ -50,10 +44,152 @@
                     <div class="preloader"></div>
                     <div class="pull-to-refresh-arrow"></div>
                   </div>
-                  <div class="content-block" id="cupons" style="padding: 0;margin:25px 0;">
-                      <div class="content-block-title">Sem cupons por enquanto :'(</div>
+                  <div class="toolbar tabbar">
+                      <div class="toolbar-inner">
+                          <a href="#tab1" class="tab-link active" style="line-height: 4px;">
+                              <i class="fa fa-download"></i><br>
+                              <diva style="font-size: 14px;">Cupons</diva>
+                          </a>
+                          <a href="#tab2" class="tab-link" style="line-height: 7px;">
+                              <i class="fa fa-ticket"></i><br>
+                              <diva style="font-size: 14px;">Meus Cupons</diva>
+                          </a>
+                          <a href="#tab3" class="tab-link" style="line-height: 7px;">
+                              <i class="fa fa-user"></i><br>
+                              <diva style="font-size: 14px;">Perfil</diva>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="tabs">
+                  <div class="page-content tab active" id="tab1" style="padding:0">
+                
+                  <div class="content-block" id="cupons" style="padding: 0;margin:0px 0;">
+                      <div class="card facebook-card" style="margin:0; margin-top:20px;">
+                        <div class="card-content">
+                          <a href="#">
+                            <img src="img/oie.jpg" width="100%">
+                            <div style="position:absolute; left: 75%; z-index: 999998;top: 0px;padding: 0px; border-radius: 5px; font-weight: bold; ">
+                              <img src="img/triangulo.png" width="100%">                            
+                            </div>
+                            <div style="position:absolute; right: 0px; z-index: 999999;top: 2px;color: white; padding: 5px; border-radius: 5px; font-weight: bold; ">
+                              <diva style="font-size: 20px;">30%</diva><br>&nbsp&nbsp&nbsp off
+                            </div>
+                          </a>
+                          <div style="position:absolute; z-index: 999998;bottom: 3px; width:100%;color:white; background-color: rgba(0, 0, 0,0.70);font-size: 20px">
+                              <center style="font-weight: bold">Santo Bar</center>                           
+                          </div>
+                        </div>
+                        <div>
+                        <div class="content-block" style="padding: 0;">
+                            <div class="row">
+                            <div class="col-65" style="border: solid;border-color: white;color: white;">
+                              <div class="list-block">
+                                <ul style="font-size: 20px; font-weight: bold">
+                                  <li class="item-content" style="background-image: url('img/download.jpg'); min-height: 0;height: 30px;">
+                                    <div class="item-media"><i class="fa fa-download"></i></div>
+                                    <div class="item-inner" style="min-height: 0;">
+                                      <div class="item-title"> Pegar Cupom</div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-35" style="border: solid;border-color: white;color: white; width: 35%;">
+                              <div class="list-block">
+                                <ul style="font-size: 20px;">
+                                  <li class="item-content" style="background-color:gray; min-height: 0;height: 30px; ">
+                                    <div class="item-inner" style="min-height: 0;">
+                                      <div class="item-title">&nbspDetalhes</div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="facebook-name" style="font-size: 22px; color: black; font-family: tahoma;font-weight: bold">&nbspHambúrguer Artesanal</div>
+                          <div class="content-block">
+                            <div class="row">
+                              <div class="col-33"><center><p style="font-weight: bold"><diva style="font-size: 18px;color: #007aff;">Por: R$7.00</diva><br><s>De: R$12.00</s></p></center></div>
+                              <div class="col-33" style="border-right: thick solid #ccc;border-left: thick solid #ccc; border-right-width: 1px;border-left-width: 1px;"><center><p style="font-size: 15px;color: red;"> <diva style="color:gray;">Disponíveis</diva><br><diva style="font-size: 18px;font-weight: bold;font-size: 22px;">4</diva> </p></center></div>
+                              <div class="col-33"><center><p style="font-size: 15px;"><i class="fa fa-clock-o"></i> Até 18:30 de <br> 21/12/2017</p></center></div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+
+                   <div class="card facebook-card" style="margin:0; margin-top:20px;">
+                        <div class="card-content">
+                          <a href="#">
+                            <img src="img/oiem.jpg" width="100%">
+                            <div style="position:absolute; left: 75%; z-index: 999998;top: 0px;padding: 0px; border-radius: 5px; font-weight: bold; ">
+                              <img src="img/triangulo.png" width="100%">                            
+                            </div>
+                            <div style="position:absolute; right: 0px; z-index: 999999;top: 2px;color: white; padding: 5px; border-radius: 5px; font-weight: bold; ">
+                              <diva style="font-size: 20px;">30%</diva><br>&nbsp&nbsp off
+                            </div>
+                          </a>
+                          <div style="position:absolute; z-index: 999998;bottom: 3px; width:100%;color:white; background-color: rgba(0, 0, 0,0.70);font-size: 20px">
+                              <center style="font-weight: bold">Santo Bar</center>                           
+                          </div>
+                        </div>
+                        <div>
+                        <div class="content-block" style="padding: 0;">
+                            <div class="row">
+                            <div class="col-65" style="border: solid;border-color: white;color: white;">
+                              <div class="list-block">
+                                <ul style="font-size: 20px; font-weight: bold">
+                                  <li class="item-content" style="background-image: url('img/download.jpg'); min-height: 0;height: 30px;">
+                                    <div class="item-media"><i class="fa fa-download"></i></div>
+                                    <div class="item-inner" style="min-height: 0;">
+                                      <div class="item-title"> Pegar Cupom</div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-35" style="border: solid;border-color: white;color: white; width: 35%;">
+                              <div class="list-block">
+                                <ul style="font-size: 20px;">
+                                  <li class="item-content" style="background-color:gray; min-height: 0;height: 30px; ">
+                                    <div class="item-inner" style="min-height: 0;">
+                                      <div class="item-title">&nbspDetalhes</div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="facebook-name" style="font-size: 22px; color: black; font-family: tahoma;font-weight: bold">&nbspPizza grande</div>
+                          <div class="content-block">
+                            <div class="row">
+                              <div class="col-33"><center><p style="font-weight: bold"><diva style="font-size: 18px;color: #007aff;">Por: R$7.00</diva><br><s>De: R$12.00</s></p></center></div>
+                              <div class="col-33" style="border-right: thick solid #ccc;border-left: thick solid #ccc; border-right-width: 1px;border-left-width: 1px;"><center><p style="font-size: 15px;color: red;"> <diva style="color:gray;">Disponíveis</diva><br><diva style="font-size: 18px;font-weight: bold;font-size: 22px;">4</diva> </p></center></div>
+                              <div class="col-33"><center><p style="font-size: 15px;"><i class="fa fa-clock-o"></i> Até 18:30 de <br> 21/12/2017</p></center></div>
+                            </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
+              </div>
+
+        <div id="tab2" class="page-content tab" style="padding: 0">
+          <div class="content-block">
+            ... Tab 2 content ...
+          </div>
+        </div>
+        <!-- Tab 3 -->
+        <div id="tab3" class="page-content tab" style="padding: 0">
+          <div class="content-block">
+            ... Tab 3 content ...
+          </div>
+        </div>
+           
+              </div>
+
           </div>
         </div>
       </div>
