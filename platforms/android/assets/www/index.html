@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="framework7/css/my-app.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
 
   <title>Demo</title>
     
@@ -28,8 +29,24 @@
           <div class="navbar-inner" style="background-color: rgb(245,147,0);">
               <div class="left" style="/*font-weight: bold;color: white*/">
               </div>
-              <div class="center" style="font-weight: bold;color:white">Chapecó</div>
+              <div class="center" style="font-weight: bold;color:white;font-family: Ubuntu;">Chapecó</div>
               <div class="right">
+              </div>
+              <div class="subnavbar tabbar">
+                <div class="toolbar-inner">
+                          <a href="#tab1" class="tab-link active" style="line-height: 7px;" onclick="tabas(1)">
+                              <i class="fa fa-ticket"></i><br>
+                              <diva style="font-size: 14px;">Cupons</diva>
+                          </a>
+                          <a href="#tab2" class="tab-link" style="line-height: 4px;" onclick="tabas(2)">
+                              <i class="fa fa-download"></i><br>
+                              <diva style="font-size: 14px;">Meus Cupons</diva>
+                          </a>
+                          <a href="#tab3" class="tab-link" style="line-height: 7px;" onclick="tabas(3)">
+                              <i class="fa fa-user"></i><br>
+                              <diva style="font-size: 14px;">Perfil</diva>
+                          </a>
+                      </div>
               </div>
               
           </div>
@@ -44,27 +61,11 @@
                     <div class="preloader"></div>
                     <div class="pull-to-refresh-arrow"></div>
                   </div>
-                  <div class="toolbar tabbar">
-                      <div class="toolbar-inner">
-                          <a href="#tab1" class="tab-link active" style="line-height: 4px;">
-                              <i class="fa fa-download"></i><br>
-                              <diva style="font-size: 14px;">Cupons</diva>
-                          </a>
-                          <a href="#tab2" class="tab-link" style="line-height: 7px;">
-                              <i class="fa fa-ticket"></i><br>
-                              <diva style="font-size: 14px;">Meus Cupons</diva>
-                          </a>
-                          <a href="#tab3" class="tab-link" style="line-height: 7px;">
-                              <i class="fa fa-user"></i><br>
-                              <diva style="font-size: 14px;">Perfil</diva>
-                          </a>
-                      </div>
-                  </div>
                   <div class="tabs">
-                  <div class="page-content tab active" id="tab1" style="padding:0">
+                  <div class="page-content tab active" id="tab1" style="padding:0;margin-top: 44px;">
                 
                   <div class="content-block" id="cupons" style="padding: 0;margin:0px 0;">
-                      <div class="card facebook-card" style="margin:0; margin-top:20px;">
+                      <!--<div class="card facebook-card" style="margin:0; margin-top:20px;font-family: Ubuntu">
                         <div class="card-content">
                           <a href="#">
                             <img src="img/oie.jpg" width="100%">
@@ -76,7 +77,7 @@
                             </div>
                           </a>
                           <div style="position:absolute; z-index: 999998;bottom: 3px; width:100%;color:white; background-color: rgba(0, 0, 0,0.70);font-size: 20px">
-                              <center style="font-weight: bold">Santo Bar</center>                           
+                              <center style="font-weight: bold;font-family: Ubuntu;">Santo Bar</center>                           
                           </div>
                         </div>
                         <div>
@@ -85,112 +86,284 @@
                             <div class="col-65" style="border: solid;border-color: white;color: white;">
                               <div class="list-block">
                                 <ul style="font-size: 20px; font-weight: bold">
-                                  <li class="item-content" style="background-image: url('img/download.jpg'); min-height: 0;height: 30px;">
+                                  <a href="#" style="color:white">
+                                  <li class="item-content" style="background-color: #17a3b0; min-height: 0;height: 30px;">
                                     <div class="item-media"><i class="fa fa-download"></i></div>
                                     <div class="item-inner" style="min-height: 0;">
-                                      <div class="item-title"> Pegar Cupom</div>
+                                      <div class="item-title" style="font-style: italic;"> Pegar Cupom</div>
                                     </div>
                                   </li>
+                                  </a>
                                 </ul>
                               </div>
                             </div>
                             <div class="col-35" style="border: solid;border-color: white;color: white; width: 35%;">
                               <div class="list-block">
                                 <ul style="font-size: 20px;">
-                                  <li class="item-content" style="background-color:gray; min-height: 0;height: 30px; ">
+                                  <a href="#" style="color: white;">
+                                  <li class="item-content" style="background-color:#f5a217; min-height: 0;height: 30px; ">
                                     <div class="item-inner" style="min-height: 0;">
-                                      <div class="item-title">&nbspDetalhes</div>
+                                      <div class="item-title" style="font-style: italic;">&nbspDetalhes</div>
                                     </div>
                                   </li>
+                                  </a>
                                 </ul>
                               </div>
                             </div>
                             </div>
                         </div>
                         <hr>
-                        <div class="facebook-name" style="font-size: 22px; color: black; font-family: tahoma;font-weight: bold">&nbspHambúrguer Artesanal</div>
+                        <div class="facebook-name" style="font-size: 22px; color: black; font-family: Ubuntu;font-weight: bold;font-style: italic;">&nbspHambúrguer Artesanal</div>
                           <div class="content-block">
                             <div class="row">
-                              <div class="col-33"><center><p style="font-weight: bold"><diva style="font-size: 18px;color: #007aff;">Por: R$7.00</diva><br><s>De: R$12.00</s></p></center></div>
-                              <div class="col-33" style="border-right: thick solid #ccc;border-left: thick solid #ccc; border-right-width: 1px;border-left-width: 1px;"><center><p style="font-size: 15px;color: red;"> <diva style="color:gray;">Disponíveis</diva><br><diva style="font-size: 18px;font-weight: bold;font-size: 22px;">4</diva> </p></center></div>
-                              <div class="col-33"><center><p style="font-size: 15px;"><i class="fa fa-clock-o"></i> Até 18:30 de <br> 21/12/2017</p></center></div>
+                              <div class="col-33"><center><p style="font-weight: bold"><s style="font-size: 16px;">De: R$12.00</s><br><diva style="font-size: 18px;color: #007aff;">Por: R$7.00</diva></p></center></div>
+                              <div class="col-33" style="border-right: thick solid #ccc;border-left: thick solid #ccc; border-right-width: 1px;border-left-width: 1px;"><center><p style="font-size: 15px;color: red;"> <diva style="color:black;">Disponíveis</diva><br><diva style="font-size: 18px;font-weight: bold;font-size: 22px;">4</diva> </p></center></div>
+                              <div class="col-33"><center><p style="font-size: 15px;color: black"><i class="fa fa-clock-o"></i> Até 18:30 de <br> 21/12/2017</p></center></div>
                             </div>
                         </div>
                       </div>
-                  </div>
+                  </div>-->
 
-                   <div class="card facebook-card" style="margin:0; margin-top:20px;">
-                        <div class="card-content">
-                          <a href="#">
-                            <img src="img/oiem.jpg" width="100%">
-                            <div style="position:absolute; left: 75%; z-index: 999998;top: 0px;padding: 0px; border-radius: 5px; font-weight: bold; ">
-                              <img src="img/triangulo.png" width="100%">                            
-                            </div>
-                            <div style="position:absolute; right: 0px; z-index: 999999;top: 2px;color: white; padding: 5px; border-radius: 5px; font-weight: bold; ">
-                              <diva style="font-size: 20px;">30%</diva><br>&nbsp&nbsp off
-                            </div>
-                          </a>
-                          <div style="position:absolute; z-index: 999998;bottom: 3px; width:100%;color:white; background-color: rgba(0, 0, 0,0.70);font-size: 20px">
-                              <center style="font-weight: bold">Santo Bar</center>                           
-                          </div>
-                        </div>
-                        <div>
-                        <div class="content-block" style="padding: 0;">
-                            <div class="row">
-                            <div class="col-65" style="border: solid;border-color: white;color: white;">
-                              <div class="list-block">
-                                <ul style="font-size: 20px; font-weight: bold">
-                                  <li class="item-content" style="background-image: url('img/download.jpg'); min-height: 0;height: 30px;">
-                                    <div class="item-media"><i class="fa fa-download"></i></div>
-                                    <div class="item-inner" style="min-height: 0;">
-                                      <div class="item-title"> Pegar Cupom</div>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="col-35" style="border: solid;border-color: white;color: white; width: 35%;">
-                              <div class="list-block">
-                                <ul style="font-size: 20px;">
-                                  <li class="item-content" style="background-color:gray; min-height: 0;height: 30px; ">
-                                    <div class="item-inner" style="min-height: 0;">
-                                      <div class="item-title">&nbspDetalhes</div>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="facebook-name" style="font-size: 22px; color: black; font-family: tahoma;font-weight: bold">&nbspPizza grande</div>
-                          <div class="content-block">
-                            <div class="row">
-                              <div class="col-33"><center><p style="font-weight: bold"><diva style="font-size: 18px;color: #007aff;">Por: R$7.00</diva><br><s>De: R$12.00</s></p></center></div>
-                              <div class="col-33" style="border-right: thick solid #ccc;border-left: thick solid #ccc; border-right-width: 1px;border-left-width: 1px;"><center><p style="font-size: 15px;color: red;"> <diva style="color:gray;">Disponíveis</diva><br><diva style="font-size: 18px;font-weight: bold;font-size: 22px;">4</diva> </p></center></div>
-                              <div class="col-33"><center><p style="font-size: 15px;"><i class="fa fa-clock-o"></i> Até 18:30 de <br> 21/12/2017</p></center></div>
-                            </div>
-                        </div>
-                      </div>
-                  </div>
                 </div>
               </div>
 
-        <div id="tab2" class="page-content tab" style="padding: 0">
-          <div class="content-block">
-            ... Tab 2 content ...
-          </div>
-        </div>
-        <!-- Tab 3 -->
-        <div id="tab3" class="page-content tab" style="padding: 0">
-          <div class="content-block">
-            ... Tab 3 content ...
-          </div>
-        </div>
-           
-              </div>
+              <div id="tab2" class="page-content tab" style="padding: 0;margin-top: 44px;">
+                <div class="toolbar toolbar-bottom" style="background-color: #007aff;">
+                  <div class="toolbar-inner" style="color: white">
+                      <a href=""></a>
+                      <a style="color:white;font-weight: bold" id="economia"> Você já economizou R$0,00. </a> 
+                      <a href=""></a>
+                  </div>
+                </div>
 
-          </div>
+                <div id="meus_cupons_historico"> 
+                <!--<div class="content-block-title" ><i class="fa fa-calendar"></i> 12 de Janeiro de 2016</div>
+              
+                <div class="card">
+                    <div class="card-content">
+                      <div class="list-block media-list">
+                        <ul>
+                          <li>
+                            <a href="#" class="item-content item-link" style="border-left: thick solid #00FF00;">
+                              <div class="item-inner">
+                                <div class="item-title-row">
+                                  <div class="item-title">Nome da Oferta bla bla bla</div>
+                                </div>
+                                <div class="item-subtitle">Nome da empresa</div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <span>50% Off</span>
+                      <span>Cupom Finalizado</span>
+                    </div>
+                  </div>
+
+                  <div class="content-block-title"><i class="fa fa-calendar"></i> 7 de Janeiro de 2016</div>
+              
+                <div class="card">
+                    <div class="card-content">
+                      <div class="list-block media-list">
+                        <ul>
+                          <li>
+                            <a href="#" class="item-content item-link" style="border-left: thick solid #FF0000;">
+                              <div class="item-inner">
+                                <div class="item-title-row">
+                                  <div class="item-title">Nome da Oferta bla bla bla</div>
+                                </div>
+                                <div class="item-subtitle">Nome da empresa</div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <span>50% Off</span>
+                      <span>Cupom Não utilizado</span>
+                    </div>
+                  </div>
+              
+                <div class="card">
+                    <div class="card-content">
+                      <div class="list-block media-list">
+                        <ul>
+                          <li>
+                            <a href="#" class="item-content item-link" style="border-left: thick solid #FFa500;">
+                              <div class="item-inner">
+                                <div class="item-title-row">
+                                  <div class="item-title">Nome da Oferta bla bla bla</div>
+                                </div>
+                                <div class="item-subtitle">Nome da empresa</div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <span>50% Off</span>
+                      <span>Avaliação pendente</span>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="list-block media-list">
+                        <ul>
+                          <li>
+                            <a href="#" class="item-content item-link" style="border-left: thick solid #007aff;">
+                              <div class="item-inner">
+                                <div class="item-title-row">
+                                  <div class="item-title">Nome da Oferta bla bla bla</div>
+                                </div>
+                                <div class="item-subtitle">Nome da empresa</div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <span>50% Off</span>
+                      <span>Cupom aguardando resgate</span>
+                    </div>
+                  </div>-->
+
+
+                </div>
+              </div>
+        <!-- Tab 3 -->
+              <div id="tab3" class="page-content tab" style="padding: 0;margin-top: 44px;">
+                  <div class="content-block-title">Minhas informações</div>
+                  <div class="list-block">
+                    <ul>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="fa fa-user"></i></div>
+                          <div class="item-inner">
+                            <div class="item-input">
+                              <input type="text" placeholder="Seu nome" id="user_nome">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="fa fa-envelope"></i></div>
+                          <div class="item-inner">
+                            <div class="item-input">
+                              <input type="email" placeholder="E-mail" readonly id="user_email">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                       <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="fa fa-phone"></i></div>
+                          <div class="item-inner">
+                            <div class="item-input">
+                              <input type="number" placeholder="Telefone" id="user_telefone">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                        <li>
+                          <div class="item-content">
+                            <div class="item-media"><i class="fa fa-mars-double"></i></div>
+                            <div class="item-inner">
+                              <div class="item-input">
+                                <select id="user_genero">
+                                  <option value="0">Feminino</option>
+                                  <option value="1">Masculino</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      <!-- Date -->
+                      <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="fa fa-calendar"></i></div>
+                          <div class="item-inner">
+                            <div class="item-input">
+                              <input type="date" name="data" placeholder="Data de nascimento" value="2014-04-30" id="user_nasc">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <p><a href="#" class="button button-fill color-blue" style="margin-left: 20px;margin-right: 20px;" onclick="alterar_perfil();">Salvar</a></p>
+                  </div>
+
+                  <div class="content-block-title">Redes sociais</div>
+                  <div class="list-block">
+                    <ul>
+                      <li>
+                        <a href="#" class="item-link item-content">
+                          <div class="item-media"><i class="fa fa-google-plus"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Avalie nosso aplicativo</div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="content-block-title">Faça mais</div>
+                  <div class="list-block">
+                    <ul>
+                      <li>
+                        <a href="#" class="item-link item-content">
+                          <div class="item-media"><i class="fa fa-thumbs-up"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Divulgue minha empresa</div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="item-link item-content">
+                          <div class="item-media"><i class="fa fa-info"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Sobre</div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="content-block-title">Segurança</div>
+                  <div class="list-block">
+                    <ul>
+                      <li>
+                        <a href="alterarsenha.html" class="item-link item-content">
+                          <div class="item-media"><i class="fa fa-lock"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Alterar senha</div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="item-link item-content" onclick="logout();">
+                          <div class="item-media"><i class="fa fa-sign-out"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Logout</div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+                 
+                    </div>
+
+                </div>
         </div>
       </div>
     </div>
