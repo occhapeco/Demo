@@ -1,5 +1,5 @@
 var xhrTimeout=1000;
-var url='http://noxgames.com.br/clube/service/';
+var url='http://clubedeofertas.net/service/';
 var urn = 'urn:service';
 var ultimo_carregado = 0;
 var glb = 0;
@@ -120,9 +120,11 @@ function cadastro(){
 function avaliar(id){
   json_dados = ajax_method(false,'usuario.avaliar',id,pegar_valor(document.getElementsByName('produto')),pegar_valor(document.getElementsByName('atendimento')),pegar_valor(document.getElementsByName('ambiente')),document.getElementById('comentario').value);
   if (json_dados){
-    myApp.alert("Avaliação enviada com sucesso. Obrigado");
-    mainView.router.back();
+    myApp.confirm("Avaliação enviada com sucesso. Obrigado", function(){
+      mainView.router.back();
     setTimeout(function (){location.reload();},150);
+    });
+    
     
   }else{
     myApp.alert("Não foi possível enviar sua avaliação, tente novamente.");
@@ -159,8 +161,8 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
 
       document.getElementById('cupons').innerHTML += '<div class="card facebook-card" style="margin:0; margin-top:20px;font-family: Ubuntu">'+
                                                         '<div class="card-content">'+
-                                                          '<a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.olar.esy.es/'+cupons[i].imagem+'">'+
-                                                            '<img src="http://www.olar.esy.es/'+cupons[i].imagem+'" width="100%">'+
+                                                          '<a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'">'+
+                                                            '<img src="http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'" width="100%">'+
                                                             '<div style="position:absolute; left: 75%; z-index: 999998;top: 0px;padding: 0px; border-radius: 5px; font-weight: bold; ">'+
                                                               '<img src="img/triangulo.png" width="100%">'+                  
                                                             '</div>'+
@@ -179,7 +181,7 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
                                                               '<div class="list-block">'+
                                                                 '<ul style="font-size: 20px; font-weight: bold">'+
                                                                   '<a href="#" onclick="pegar_cupom('+cupons[i].id+')" style="color:white">'+
-                                                                  '<li class="item-content" style="background-color: #17a3b0; min-height: 0;height: 30px;">'+
+                                                                  '<li class="item-content" style="background-color: #F44336; min-height: 0;height: 30px;">'+
                                                                     '<div class="item-media"><i class="fa fa-download"></i></div>'+
                                                                     '<div class="item-inner" style="min-height: 0;">'+
                                                                       '<div class="item-title" style="font-style: italic;"> Pegar Cupom</div>'+
@@ -192,8 +194,8 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
                                                             '<div class="col-35" style="border: solid;border-color: white;color: white; width: 35%;">'+
                                                               '<div class="list-block">'+
                                                                 '<ul style="font-size: 20px;">'+
-                                                                  '<a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.olar.esy.es/'+cupons[i].imagem+'" style="color: white;">'+
-                                                                  '<li class="item-content" style="background-color:#f5a217; min-height: 0;height: 30px; ">'+
+                                                                  '<a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'" style="color: white;">'+
+                                                                  '<li class="item-content" style="background-color:#17a3b0 ; min-height: 0;height: 30px; ">'+
                                                                     '<div class="item-inner" style="min-height: 0;">'+
                                                                       '<div class="item-title" style="font-style: italic;">&nbspDetalhes</div>'+
                                                                     '</div>'+
@@ -251,7 +253,7 @@ function carregar_meus_cupons(){
       if (cupons[i].estado == 0) 
         batatinea += '<a href="#" class="item-content item-link" style="border-left: thick solid #007aff;">';
       if (cupons[i].estado == 1) {
-        batatinea += '<a href="opiniao.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.olar.esy.es/'+cupons[i].imagem+'" class="item-content item-link" style="border-left: thick solid #FFa500;">';
+        batatinea += '<a href="opiniao.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'" class="item-content item-link" style="border-left: thick solid #FFa500;">';
         lucro += cupons[i].preco_normal - cupons[i].preco_cupom;
       }
       if (cupons[i].estado == 2) {
@@ -336,7 +338,7 @@ function carregar_login(){
   document.getElementById('peige').innerHTML = '<div data-page="login-screen" class="page no-navbar">'+
                                                 '<div class="page-content login-screen-content" style="background-image:url(\'img/pancue.jpg\');background-size: 100%">'+
                                                 '<div style="padding-bottom: 5px; max-width: 480px; margin: auto;">'+
-                                                  '<div class="login-screen-title" style="margin: 25px auto; "><img src="img/logo.png" width="150px"></div>'+
+                                                  '<div class="login-screen-title" style="margin: 25px auto; "><img src="img/logo_app.png" width="150px"></div>'+
                                                     '<div class="list-block">'+
                                                       '<ul>'+
                                                         '<li class="item-content" style="padding-right: 15px;">'+
@@ -383,7 +385,7 @@ function detalhes_opiniao(id,nome,desconto,preco_ini,preco_desc,prazo,empresa,im
       myApp.alert("Não foi possível carregar os detalhes do cupom. Tente novamente.");
     }
     myApp.hidePreloader();
-  },100);
+  },375);
 }
 
 function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,empresa,imagem){
@@ -392,17 +394,20 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
     json_dados = ajax_method(false,'usuario.select_detalhes_cupom',id);
     if(json_dados){
       var cupom = JSON.parse(json_dados);
-            for (i = 0; i < cupom.tipos.length; i++) {
-              document.getElementById('tipos').innerHTML += '<div class="chip" style="color: #fff;background: rgba(0,0,0,.37);display: inline-block;height: 23px;line-height: 23px;border-radius: 5px;padding: 0 6px;margin-right:5px;"><div class="chip-label">'+cupom.tipos[i].nome+'</div></div>';
-            }
       set_inner("empresa_oferta",empresa);
        document.getElementById('img_oferta').setAttribute("src", imagem);
        set_inner("desconto_cupom",'<diva style="font-size: 20px;">'+desconto+'%</diva><br>&nbsp&nbsp&nbsp off');
        set_inner("nome_cupom",nome);
        set_inner("precos_cupom",'Por: R$'+preco_desc+' &nbsp<s style="color:gray">De: R$'+preco_ini+'</s>');
-       set_inner("info_cupom",'<i class="fa fa-ticket"></i> '+quantidade+' Restantes<br><i class="fa fa-calendar"></i> Válido até '+prazo);
-       set_inner("desc_cupom",'<p>'+cupom.detalhes.descricao+'</p>');
-       set_inner("regras_cupom",'<p>'+cupom.detalhes.regras+'</p>');
+       set_inner("info_cupom",'<i class="fa fa-ticket"></i> '+quantidade+' Restantes<br><i class="fa fa-calendar"></i> Válido até '+prazo+'<br><hr>Categorias: ');
+       for (i = 0; i < cupom.tipos.length; i++) {
+              document.getElementById('info_cupom').innerHTML += cupom.tipos[i].nome+' ';
+              if (i != (cupom.tipos.length -1) ) {
+                document.getElementById('info_cupom').innerHTML += ', ';
+              }
+            }
+       set_inner("desc_cupom",'<p>Descrição: '+cupom.detalhes.descricao+'</p>');
+       set_inner("regras_cupom",'<p>Regras: '+cupom.detalhes.regras+'</p>');
        set_inner("empresa_cupom",empresa); 
        document.getElementById('telefone_cupom').setAttribute("onclick", "window.open('tel:"+cupom.detalhes.telefone+"', '_system');");
        document.getElementById("endereco_cupom").setAttribute("onclick", "window.open('http://maps.apple.com/?q=loc:"+cupom.detalhes.latitude+","+cupom.detalhes.longitude+"', '_system');");
@@ -434,7 +439,7 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
       myApp.alert("Não foi possível carregar os detalhes do cupom. Tente novamente.");
     }
     myApp.hidePreloader();
-  },100);
+  },375);
 }
 
 function login()
@@ -557,7 +562,7 @@ function set_inner(id,valor){
 function pegar_cupom(id){
    myApp.confirm('Tem certeza que deseja pegar este cupom?', function () {
         json_dados = ajax_method(false,'usuario.pegar_cupom',localStorage.getItem("user_id"),id);
-        if (json_dados) {
+        if (json_dados == 1) {
           myApp.alert("Cupom ativado, boas compras!", function() {
              carregar_cupons(ultimo_carregado,1,0,0,"");
              carregar_meus_cupons();
@@ -571,8 +576,7 @@ function pegar_cupom(id){
 
 function pegar_cupoma(id){
     json_dados = ajax_method(false,'usuario.pegar_cupom',localStorage.getItem("user_id"),id);
-    alert(json_dados);
-    if (json_dados) {
+    if (json_dados == 1) {
       myApp.alert("Cupom ativado, boas compras!", function(){
         mainView.router.back();
         carregar_cupons(ultimo_carregado,1,0,0,"");
