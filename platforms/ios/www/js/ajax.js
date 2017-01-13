@@ -10,6 +10,7 @@ var myApp = new Framework7({
   swipeBackPage: true,
   modalTitle: "Clube de Ofertas",
   modalButtonCancel: "Cancelar",
+  modalButtonOk: "Confirmar",
   modalPreloaderTitle: "Carregando...",
   smartSelectBackText: 'Voltar',
   smartSelectPopupCloseText: 'Fechar',
@@ -35,7 +36,8 @@ function tabas(id){
 
 
 if (localStorage.getItem("user_id") == null || localStorage.getItem("user_id") == 'null') 
-      carregar_login();
+      {carregar_login();
+      }
     else{
       document.getElementById('cupons').innerHTML = '';
       carregar_cupons(0,1,0,0,"");
@@ -46,7 +48,7 @@ if (localStorage.getItem("user_id") == null || localStorage.getItem("user_id") =
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 
-    if (localStorage.getItem("user_id") === null && page.name != "cadastro") {
+    if (localStorage.getItem("user_id") === null && (page.name != "cadastro" && page.name != "cupons-no-login" && page.name != "oferta" )) {
       mainView.router.back();
       carregar_login();
     }else{
@@ -57,6 +59,10 @@ $$(document).on('pageInit', function (e) {
 
         if(page.name === 'index'){
          setTimeout(function (){carregar_cupons(0,1,0,0,"");},150);     
+        }
+
+        if(page.name === 'cupons-no-login'){
+         setTimeout(function (){carregar_cuponsa(0,1,0,0,"");},150);     
         }
 
         if(page.name === 'oferta'){
@@ -86,14 +92,14 @@ $$('.infinite-scroll').on('infinite', function () {
   if (glb == 0 &&  taba==1) {
     ultimo_carregado += 5;
     glb = 1;
-    carregar_cupons(ultimo_carregado,1,0,0,"");
+    //carregar_cupons(ultimo_carregado,1,0,0,"");
     setTimeout(function(){glb = 0;},5000);
   }    
     
 });
 
 function cadastro(){
-  if(document.getElementById("cad_senha").value == document.getElementById("cad_senha2").value && document.getElementById("cad_nome").value.length > 2 && document.getElementById("cad_email").value.length > 2 && document.getElementById("cad_senha").value.length > 2 && document.getElementById("cad_senha2").value.length > 2  && document.getElementById("cad_telefone").value.length > 2 && document.getElementById("cad_nasc").value.length > 2 )
+  if(document.getElementById("cad_nome").value.length > 2 && document.getElementById("cad_email").value.length > 2 && document.getElementById("cad_senha").value.length > 2 && document.getElementById("cad_telefone").value.length > 2 && document.getElementById("cad_nasc").value.length > 2 )
     {  
       myApp.showPreloader("Realizando cadastro...");
       setTimeout(function () {
@@ -139,12 +145,12 @@ function pegar_valor(campo){
   }
 }
 
-function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id){
+function carregar_cuponsa(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id){
   myApp.showPreloader();
   if (ultimo_carregado == 0) 
-    document.getElementById('cupons').innerHTML = ' ';
+    document.getElementById('cuponsa').innerHTML = ' ';
   setTimeout(function () {
-    json_dados = ajax_method(false,'usuario.select_cupons',localStorage.getItem("user_id"),cidade_id,delivery,pagamento,tipo_id,ultimo_carregado);
+    json_dados = ajax_method(false,'usuario.select_cupons',1,cidade_id,delivery,pagamento,tipo_id);
     var cupons = JSON.parse(json_dados);
 
     if (cupons.length >0) {
@@ -159,7 +165,12 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
 
       cupons[i].preco_normal  =  parseFloat(cupons[i].preco_normal).toFixed(2);
 
-      document.getElementById('cupons').innerHTML += '<div class="card facebook-card" style="margin:0; margin-top:20px;font-family: Ubuntu">'+
+      if (cupons[i].quantidade >=5)
+        cor = '#007aff';
+      else
+        cor = 'red';
+
+      document.getElementById('cuponsa').innerHTML += '<div class="card facebook-card" style="margin:0; margin-top:20px;font-family: Ubuntu">'+
                                                         '<div class="card-content">'+
                                                           '<a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'">'+
                                                             '<img src="http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'" width="100%">'+
@@ -180,7 +191,7 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
                                                             '<div class="col-65" style="border: solid;border-color: white;color: white;">'+
                                                               '<div class="list-block">'+
                                                                 '<ul style="font-size: 20px; font-weight: bold">'+
-                                                                  '<a href="#" onclick="pegar_cupom('+cupons[i].id+')" style="color:white">'+
+                                                                  '<a href="#" onclick="myApp.alert(\'Para pegar este cupom, faça login.\')" style="color:white">'+
                                                                   '<li class="item-content" style="background-color: #F44336; min-height: 0;height: 30px;">'+
                                                                     '<div class="item-media"><i class="fa fa-download"></i></div>'+
                                                                     '<div class="item-inner" style="min-height: 0;">'+
@@ -210,8 +221,97 @@ function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id
                                                         '<div class="facebook-name" style="font-size: 22px; color: black; font-family: Ubuntu;font-weight: bold;font-style: italic;">&nbsp'+cupons[i].titulo+'</div>'+
                                                           '<div class="content-block">'+
                                                             '<div class="row">'+
-                                                              '<div class="col-36"><center><p style="font-weight: bold"><s style="font-size: 14px;">De: <divas style="font-size:18px">R$'+cupons[i].preco_normal+'</divas></s><br><diva style="font-size: 14px;color: #007aff;">Por: <divas style="font-size:22px;">R$'+cupons[i].preco_cupom+'</divas></diva></p></center></div>'+
-                                                              '<div class="col-33" style="border-right: thick solid #ccc;border-left: thick solid #ccc; border-right-width: 1px;border-left-width: 1px;"><center><p style="font-size: 15px;color: red;"> <diva style="color:black;">Disponíveis</diva><br><diva style="font-size: 18px;font-weight: bold;font-size: 22px;">'+cupons[i].quantidade+'</diva> </p></center></div>'+
+                                                              '<div class="col-36"><center><p style="font-weight: bold"><s style="font-size: 14px;">De: <divas style="font-size:18px">R$'+cupons[i].preco_normal+'</divas></s><br><diva style="font-size: 14px;color: red;">Por: <divas style="font-size:22px;">R$'+cupons[i].preco_cupom+'</divas></diva></p></center></div>'+
+                                                              '<div class="col-33" style="border-right: thick solid #ccc;border-left: thick solid #ccc; border-right-width: 1px;border-left-width: 1px;"><center><p style="font-size: 15px;color: '+cor+';"> <diva style="color:black;">Disponíveis</diva><br><diva style="font-size: 18px;font-weight: bold;font-size: 22px;">'+cupons[i].quantidade+'</diva> </p></center></div>'+
+                                                              '<div class="col-30"><center><p style="font-size: 15px;color: black"><i class="fa fa-clock-o"></i> Até <br> '+cupons[i].prazo+'</p></center></div>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                      '</div>'+
+                                                  '</div>';
+      }    
+
+      myApp.hidePreloader();
+  },100);
+}
+
+function carregar_cupons(ultimo_carregado, cidade_id, delivery,pagamento,tipo_id){
+  myApp.showPreloader();
+  if (ultimo_carregado == 0) 
+    document.getElementById('cupons').innerHTML = ' ';
+  setTimeout(function () {
+    json_dados = ajax_method(false,'usuario.select_cupons',localStorage.getItem("user_id"),cidade_id,delivery,pagamento,tipo_id);
+    var cupons = JSON.parse(json_dados);
+
+    if (cupons.length >0) {
+      glb = 0;
+    }
+
+    for (i = 0; i < cupons.length ; i++) {
+
+      desconto = Math.round(100 - (cupons[i].preco_cupom * 100 / cupons[i].preco_normal));
+
+      cupons[i].preco_cupom  =  parseFloat(cupons[i].preco_cupom).toFixed(2);
+
+      cupons[i].preco_normal  =  parseFloat(cupons[i].preco_normal).toFixed(2);
+
+      if (cupons[i].quantidade >=5)
+        cor = '#007aff';
+      else
+        cor = 'red';
+
+      document.getElementById('cupons').innerHTML += '<div class="card facebook-card" style="margin:0; margin-top:20px;font-family: Ubuntu">'+
+                                                        '<div class="card-content">'+
+                                                          '<a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'">'+
+                                                            '<img src="http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'" width="100%">'+
+                                                            '<div style="position:absolute; left: 75%; z-index: 999998;top: 0px;padding: 0px; border-radius: 5px; font-weight: bold; ">'+
+                                                              '<img src="img/triangulo.png" width="100%">'+                  
+                                                            '</div>'+
+                                                            '<div style="position:absolute; right: 0px; z-index: 999999;top: 2px;color: white; padding: 5px; border-radius: 5px; font-weight: bold; ">'+
+                                                              '<diva style="font-size: 20px;">'+desconto+'%</diva><br>&nbsp&nbsp&nbsp off'+
+                                                            '</div>'+
+                                                          '</a>'+
+                                                          '<div style="position:absolute; z-index: 999998;bottom: 3px; width:100%;color:white; background-color: rgba(0, 0, 0,0.70);font-size: 20px">'+
+                                                              '<center style="font-weight: bold;font-family: Ubuntu;">'+cupons[i].nome_fantasia+'</center>'+
+                                                          '</div>'+
+                                                        '</div>'+
+                                                        '<div>'+
+                                                        '<div class="content-block" style="padding: 0;">'+
+                                                            '<div class="row">'+
+                                                            '<div class="col-65" style="border: solid;border-color: white;color: white;">'+
+                                                              '<div class="list-block">'+
+                                                                '<ul style="font-size: 20px; font-weight: bold">'+
+                                                                  '<a href="#" onclick="pegar_cupom('+cupons[i].id+',\''+cupons[i].titulo+'\')" style="color:white">'+
+                                                                  '<li class="item-content" style="background-color: #F44336; min-height: 0;height: 30px;">'+
+                                                                    '<div class="item-media"><i class="fa fa-download"></i></div>'+
+                                                                    '<div class="item-inner" style="min-height: 0;">'+
+                                                                      '<div class="item-title" style="font-style: italic;"> Pegar Cupom</div>'+
+                                                                    '</div>'+
+                                                                  '</li>'+
+                                                                  '</a>'+
+                                                                '</ul>'+
+                                                              '</div>'+
+                                                            '</div>'+
+                                                            '<div class="col-35" style="border: solid;border-color: white;color: white; width: 35%;">'+
+                                                              '<div class="list-block">'+
+                                                                '<ul style="font-size: 20px;">'+
+                                                                  '<a href="oferta.html?id='+cupons[i].id+'&titulo='+cupons[i].titulo+'&desconto='+desconto+'&preco_normal='+cupons[i].preco_normal+'&preco_cupom='+cupons[i].preco_cupom+'&prazo='+cupons[i].prazo+'&quantidade='+cupons[i].quantidade+'&nome_fantasia='+cupons[i].nome_fantasia+'&caminho=http://www.clubedeofertas.net/imgs/'+cupons[i].imagem+'" style="color: white;">'+
+                                                                  '<li class="item-content" style="background-color:#17a3b0 ; min-height: 0;height: 30px; ">'+
+                                                                    '<div class="item-inner" style="min-height: 0;">'+
+                                                                      '<div class="item-title" style="font-style: italic;">&nbspDetalhes</div>'+
+                                                                    '</div>'+
+                                                                  '</li>'+
+                                                                  '</a>'+
+                                                                '</ul>'+
+                                                              '</div>'+
+                                                            '</div>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                        '<hr>'+
+                                                        '<div class="facebook-name" style="font-size: 22px; color: black; font-family: Ubuntu;font-weight: bold;font-style: italic;">&nbsp'+cupons[i].titulo+'</div>'+
+                                                          '<div class="content-block">'+
+                                                            '<div class="row">'+
+                                                              '<div class="col-36"><center><p style="font-weight: bold"><s style="font-size: 14px;">De: <divas style="font-size:18px">R$'+cupons[i].preco_normal+'</divas></s><br><diva style="font-size: 14px;color: red;">Por: <divas style="font-size:22px;">R$'+cupons[i].preco_cupom+'</divas></diva></p></center></div>'+
+                                                              '<div class="col-33" style="border-right: thick solid #ccc;border-left: thick solid #ccc; border-right-width: 1px;border-left-width: 1px;"><center><p style="font-size: 15px;color: '+cor+';"> <diva style="color:black;">Disponíveis</diva><br><diva style="font-size: 18px;font-weight: bold;font-size: 22px;">'+cupons[i].quantidade+'</diva> </p></center></div>'+
                                                               '<div class="col-30"><center><p style="font-size: 15px;color: black"><i class="fa fa-clock-o"></i> Até <br> '+cupons[i].prazo+'</p></center></div>'+
                                                             '</div>'+
                                                         '</div>'+
@@ -358,9 +458,9 @@ function carregar_login(){
                                                       '</ul>'+
                                                     '</div>'+
                                                     '<div class="list-block-label" style="padding-left:15px;padding-right:15px;">'+
-                                                        '<p><a onclick="login();" class="button button-fill color-orange">Entrar</a></p>'+
-                                                        '<p><a href="cadastrar.html" class="link">Não possui cadastro? Clique aqui</a></p>'+
-                                                        '<p><a href="#" class="link">Esqueceu sua senha?</a></p>'+
+                                                        '<p><a onclick="login();" class="button button-fill color-blue">Entrar</a></p>'+
+                                                        '<p><a href="cadastrar.html" class="button button-fill color-orange">Cadastre-se gratuitamente. Clique aqui</a></p>'+
+                                                        '<p><a href="cupons-no-login.html" onclick="$$(\'#ba\').show();" class="button button-fill color-white" style="color:orange">Ver cupons sem login</a></p>'+
                                                     '</div>'+
                                                     '</div>'+
                                                   '</div>'+
@@ -398,16 +498,20 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
        document.getElementById('img_oferta').setAttribute("src", imagem);
        set_inner("desconto_cupom",'<diva style="font-size: 20px;">'+desconto+'%</diva><br>&nbsp&nbsp&nbsp off');
        set_inner("nome_cupom",nome);
-       set_inner("precos_cupom",'Por: R$'+preco_desc+' &nbsp<s style="color:gray">De: R$'+preco_ini+'</s>');
-       set_inner("info_cupom",'<i class="fa fa-ticket"></i> '+quantidade+' Restantes<br><i class="fa fa-calendar"></i> Válido até '+prazo+'<br><hr>Categorias: ');
+       if (quantidade >=5)
+          cor = '#007aff';
+        else
+         cor = 'red';
+       set_inner("precos_cupom",'<diva style="font-size:18px">Por:</diva> <diva style="font-weight:bold">R$'+preco_desc+'</diva> &nbsp<s style="color:gray"><diva style="font-size:16px">De:</diva> R$'+preco_ini+'</s>');
+       set_inner("info_cupom",'<i class="fa fa-ticket"></i> <diva style="color:'+cor+'">'+quantidade+' Restantes</diva><br><i class="fa fa-calendar"></i> Válido até '+prazo+'<br><hr>Categorias: ');
        for (i = 0; i < cupom.tipos.length; i++) {
               document.getElementById('info_cupom').innerHTML += cupom.tipos[i].nome+' ';
               if (i != (cupom.tipos.length -1) ) {
                 document.getElementById('info_cupom').innerHTML += ', ';
               }
             }
-       set_inner("desc_cupom",'<p>Descrição: '+cupom.detalhes.descricao+'</p>');
-       set_inner("regras_cupom",'<p>Regras: '+cupom.detalhes.regras+'</p>');
+       set_inner("desc_cupom",'<p style="margin:0">Descrição: '+cupom.detalhes.descricao+'</p>');
+       set_inner("regras_cupom",'<p style="margin:0">Regras: '+cupom.detalhes.regras+'</p>');
        set_inner("empresa_cupom",empresa); 
        document.getElementById('telefone_cupom').setAttribute("onclick", "window.open('tel:"+cupom.detalhes.telefone+"', '_system');");
        document.getElementById("endereco_cupom").setAttribute("onclick", "window.open('http://maps.apple.com/?q=loc:"+cupom.detalhes.latitude+","+cupom.detalhes.longitude+"', '_system');");
@@ -423,7 +527,8 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
 
      if (ok) {
       if (cupom.detalhes.estado == 0) {
-        document.getElementById('botao_cupom').setAttribute('onclick',"pegar_cupoma("+id+");");
+        document.getElementById('botao_cupom').setAttribute('onclick','pegar_cupoma('+id+',\''+cupons[i].titulo+'\');');
+        document.getElementById('botao_cupom').setAttribute('class',"button button-fill color-red bttnb");
        }else{
         document.getElementById('botao_cupom').innerHTML = '<i class="fa fa-delete" style="font-size: 20px;"></i> &nbsp&nbspCupom Fora de Aquisição';
         document.getElementById('botao_cupom').setAttribute('disabled'," ");
@@ -559,11 +664,11 @@ function set_inner(id,valor){
    document.getElementById(id).innerHTML = valor;
 }
 
-function pegar_cupom(id){
-   myApp.confirm('Tem certeza que deseja pegar este cupom?', function () {
+function pegar_cupom(id,titulo){
+   myApp.confirm('Confirmar compra de: '+titulo+'. A não utilização do cupom resultará num bloqueio de 7 dias do aplicativo.', function () {
         json_dados = ajax_method(false,'usuario.pegar_cupom',localStorage.getItem("user_id"),id);
         if (json_dados == 1) {
-          myApp.alert("Cupom ativado, boas compras!", function() {
+          myApp.alert("Seu cupom foi ativado. Para utilizá-lo vá até o estabelecimento e informe seu nome ou telefone para usufruir do desconto. A não utilização do cupom resultará num bloqueio de 7 dias do aplicativo.", function() {
              carregar_cupons(ultimo_carregado,1,0,0,"");
              carregar_meus_cupons();
           });
@@ -574,18 +679,24 @@ function pegar_cupom(id){
     });    
 }
 
-function pegar_cupoma(id){
-    json_dados = ajax_method(false,'usuario.pegar_cupom',localStorage.getItem("user_id"),id);
-    if (json_dados == 1) {
-      myApp.alert("Cupom ativado, boas compras!", function(){
-        mainView.router.back();
-        carregar_cupons(ultimo_carregado,1,0,0,"");
-        carregar_meus_cupons();
-      });
-      
-    }else{
-      myApp.alert("Não foi possível pegar este cupom, confira se já não o adquiriu e tente novamente.");
-    }
+function pegar_cupoma(id,titulo){
+  if (localStorage.getItem("user_id") == null || localStorage.getItem("user_id") == 'null') {
+    myApp.alert('Para pegar este cupom, faça login.');
+  }else{
+    myApp.confirm('Confirmar compra de: '+titulo+'. A não utilização do cupom resultará num bloqueio de 7 dias do aplicativo.', function () {
+      json_dados = ajax_method(false,'usuario.pegar_cupom',localStorage.getItem("user_id"),id);
+      if (json_dados == 1) {
+        myApp.alert("Seu cupom foi ativado. Para utilizá-lo vá até o estabelecimento e informe seu nome ou telefone para usufruir do desconto.", function(){
+          mainView.router.back();
+          carregar_cupons(ultimo_carregado,1,0,0,"");
+          carregar_meus_cupons();
+        });
+        
+      }else{
+        myApp.alert("Não foi possível pegar este cupom, confira se já não o adquiriu e tente novamente.");
+      }
+    });
+  }
 }
 
 function ajax_method()
