@@ -99,11 +99,11 @@ $$('.infinite-scroll').on('infinite', function () {
 });
 
 function cadastro(){
-  if(document.getElementById("cad_nome").value.length > 2 && document.getElementById("cad_email").value.length > 2 && document.getElementById("cad_senha").value.length > 2 && document.getElementById("cad_telefone").value.length > 2 && document.getElementById("cad_nasc").value.length > 2 )
+  if(document.getElementById("cad_nome").value.length > 2 && document.getElementById("cad_email").value.length > 2 && document.getElementById("cad_telefone_ddd").value.length > 1 && document.getElementById("cad_senha").value.length > 2 && document.getElementById("cad_telefone").value.length > 2 && document.getElementById("cad_nasc_dia").value != '-' && document.getElementById("cad_nasc_mes").value != '-' && document.getElementById("cad_nasc_ano").value != '-' )
     {  
       myApp.showPreloader("Realizando cadastro...");
       setTimeout(function () {
-        var adduser = ajax_method(false,'usuario.insert',document.getElementById("cad_nome").value,document.getElementById("cad_email").value,document.getElementById("cad_senha").value,document.getElementById("cad_telefone").value,document.getElementById("cad_genero").value,document.getElementById("cad_nasc").value);
+        var adduser = ajax_method(false,'usuario.insert',document.getElementById("cad_nome").value,document.getElementById("cad_email").value,document.getElementById("cad_senha").value,document.getElementById("cad_telefone_ddd").value+document.getElementById("cad_telefone").value,document.getElementById("cad_genero").value,document.getElementById("cad_nasc_dia").value+'/'+document.getElementById("cad_nasc_mes").value+'/'+document.getElementById("cad_nasc_ano").value);
         myApp.hidePreloader();
         if(adduser != 0)
         {
@@ -444,14 +444,14 @@ function carregar_login(){
                                                         '<li class="item-content" style="padding-right: 15px;">'+
                                                           '<div class="item-inner" style="padding-right: 0;">'+
                                                               '<div class="item-input transp">'+
-                                                                '<input type="email" name="login_email" id="login_email" placeholder="Email" required style="padding-left: 10px; color: white">'+
+                                                                '<input type="email" name="login_email" id="login_email" placeholder="Email" required style="padding-left: 10px; color: white" onkeypress="next(event,this)">'+
                                                               '</div>'+
                                                           '</div>'+
                                                         '</li>'+
                                                         '<li class="item-content" style="padding-right: 15px;">'+
                                                           '<div class="item-inner" style="padding-right: 0;">'+
                                                               '<div class="item-input transp">'+
-                                                                '<input type="password" name="login_senha" id="login_senha" placeholder="Senha" required style="padding-left: 10px; color: white">'+
+                                                                '<input type="password" name="login_senha" id="login_senha" placeholder="Senha" required style="padding-left: 10px; color: white" onkeypress="logar(event);">'+
                                                               '</div>'+
                                                           '</div>'+
                                                         '</li>'+
@@ -502,7 +502,7 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
           cor = '#007aff';
         else
          cor = 'red';
-       set_inner("precos_cupom",'<diva style="font-size:18px">Por:</diva> <diva style="font-weight:bold">R$'+preco_desc+'</diva> &nbsp<s style="color:gray"><diva style="font-size:16px">De:</diva> R$'+preco_ini+'</s>');
+       set_inner("precos_cupom",'<diva style="font-size:18px">Por:</diva> <diva style="font-weight:bold; font-size:22px;">R$'+preco_desc+'</diva> &nbsp<s style="color:gray;font-size:18px;">De:<diva style="font-size:20px"> R$'+preco_ini+'</diva></s>');
        set_inner("info_cupom",'<i class="fa fa-ticket"></i> <diva style="color:'+cor+'">'+quantidade+' Restantes</diva><br><i class="fa fa-calendar"></i> Válido até '+prazo+'<br><hr>Categorias: ');
        for (i = 0; i < cupom.tipos.length; i++) {
               document.getElementById('info_cupom').innerHTML += cupom.tipos[i].nome+' ';
@@ -698,6 +698,37 @@ function pegar_cupoma(id,titulo){
     });
   }
 }
+
+function numero(){
+  if (document.getElementById('cad_telefone_ddd').value.length > 3) {
+        document.getElementById('cad_telefone').focus();
+        document.getElementById('cad_telefone_ddd').value = document.getElementById('cad_telefone_ddd').value.slice(0, -1);
+    }
+    if (document.getElementById('cad_telefone_ddd').value.length == 3) {
+      document.getElementById('cad_telefone').focus();
+    }
+}
+
+function next(event,elem)
+{
+  if(event.keyCode == 13){
+    nextEl = findNextTabStop(elem);
+    nextEl.focus();
+  }
+}
+
+function logar(event)
+{
+  if(event.keyCode == 13)
+    login();
+}
+
+function findNextTabStop(el) {
+    var universe = document.querySelectorAll('input, button, select, textarea, a[href]');
+    var list = Array.prototype.filter.call(universe, function(item) {return item.tabIndex >= "0"});
+    var index = list.indexOf(el);
+    return list[index + 1] || list[0];
+  }
 
 function ajax_method()
 {
