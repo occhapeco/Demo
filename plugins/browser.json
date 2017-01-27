@@ -67,8 +67,8 @@
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.nomedoapp"
         },
-        "cordova-plugin-fcm": {
-            "PACKAGE_NAME": "com.clubedeofertas"
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         }
     },
     "dependent_plugins": {

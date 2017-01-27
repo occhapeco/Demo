@@ -34,6 +34,11 @@ function tabas(id){
   taba = id;
 }
 
+function token(token){
+  if (localStorage.getItem("user_id") != null || localStorage.getItem("user_id") != 'null') {
+    json_dados = ajax_method(false,'usuario.update_token',localStorage.getItem("user_id"),token);
+  }
+}
 
 if (localStorage.getItem("user_id") == null || localStorage.getItem("user_id") == 'null') 
       {carregar_login();
@@ -103,7 +108,7 @@ function cadastro(){
     {  
       myApp.showPreloader("Realizando cadastro...");
       setTimeout(function () {
-        var adduser = ajax_method(false,'usuario.insert',document.getElementById("cad_nome").value,document.getElementById("cad_email").value,document.getElementById("cad_senha").value,document.getElementById("cad_telefone_ddd").value+document.getElementById("cad_telefone").value,document.getElementById("cad_genero").value,document.getElementById("cad_nasc_dia").value+'/'+document.getElementById("cad_nasc_mes").value+'/'+document.getElementById("cad_nasc_ano").value);
+        var adduser = ajax_method(false,'usuario.insert',document.getElementById("cad_nome").value,document.getElementById("cad_email").value,document.getElementById("cad_senha").value,document.getElementById("cad_telefone_ddd").value+document.getElementById("cad_telefone").value,document.getElementById("cad_genero").value,document.getElementById("cad_nasc_ano").value+'-'+document.getElementById("cad_nasc_mes").value+'-'+document.getElementById("cad_nasc_dia").value);
         myApp.hidePreloader();
         if(adduser != 0)
         {
@@ -527,7 +532,7 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
 
      if (ok) {
       if (cupom.detalhes.estado == 0) {
-        document.getElementById('botao_cupom').setAttribute('onclick','pegar_cupoma('+id+',\''+cupons[i].titulo+'\');');
+        document.getElementById('botao_cupom').setAttribute('onclick','pegar_cupoma('+id+',\''+nome+'\');');
         document.getElementById('botao_cupom').setAttribute('class',"button button-fill color-red bttnb");
        }else{
         document.getElementById('botao_cupom').innerHTML = '<i class="fa fa-delete" style="font-size: 20px;"></i> &nbsp&nbspCupom Fora de Aquisição';
@@ -560,6 +565,7 @@ function login()
     if (id != 0 && id != null && id != 'null')
     {
       localStorage.setItem("user_id",id);
+      json_dados = ajax_method(false,'usuario.update_token',localStorage.getItem("user_id"),localStorage.getItem('token'));
       $$("#ba").show();
       location.reload();
     }
@@ -578,6 +584,7 @@ function oloco(){
 }
 
 function logout() {
+  json_dados = ajax_method(false,'usuario.update_token',localStorage.getItem("user_id")," ");
   localStorage.removeItem("user_id");
   mainView.router.back();
   carregar_login();

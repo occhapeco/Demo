@@ -56,7 +56,7 @@
           <!-- Page, data-page contains page name-->
             <div data-page="index" class="page">
 
-                <div class="page-content infinite-scroll pull-to-refresh-content" data-distance="10">
+                <div class="page-content pull-to-refresh-content" data-ptr-distance="150">
                   <div class="pull-to-refresh-layer">
                     <div class="preloader"></div>
                     <div class="pull-to-refresh-arrow"></div>
@@ -293,7 +293,7 @@
                           <div class="item-media"><i class="fa fa-calendar"></i></div>
                           <div class="item-inner">
                             <div class="item-input">
-                              <input type="date" name="data" placeholder="Data de nascimento" value="2014-04-30" id="user_nasc">
+                              <input type="date" name="data" placeholder="Data de nascimento" value="2014-04-30" id="user_nasc" >
                             </div>
                           </div>
                         </div>
@@ -371,6 +371,9 @@
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
     <script type="text/javascript" src="framework7/js/framework7.js"></script>
     <script type="text/javascript" src="js/ajax.js"></script>
 

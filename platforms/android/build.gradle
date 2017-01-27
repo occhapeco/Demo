@@ -88,8 +88,7 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "cordova-plugin-fcm/nomedoapp-FCMPlugin.gradle"
-apply from: "cordova-plugin-fcm/clubedeofertas-FCMPlugin.gradle"
+apply from: "cordova-plugin-firebase/clubedeofertas-build.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()
@@ -251,6 +250,10 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     debugCompile(project(path: "CordovaLib", configuration: "debug"))
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
+    compile "com.google.firebase:firebase-core:+"
+    compile "com.google.firebase:firebase-messaging:+"
+    compile "com.google.firebase:firebase-crash:+"
+    compile "com.google.firebase:firebase-config:+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

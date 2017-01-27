@@ -390,6 +390,14 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-firebase.FirebasePlugin",
+        "file": "plugins/cordova-plugin-firebase/www/firebase.js",
+        "pluginId": "cordova-plugin-firebase",
+        "clobbers": [
+            "FirebasePlugin"
+        ]
+    },
+    {
         "id": "cordova-plugin-geolocation.Coordinates",
         "file": "plugins/cordova-plugin-geolocation/www/Coordinates.js",
         "pluginId": "cordova-plugin-geolocation",
@@ -567,14 +575,6 @@ module.exports = [
         "clobbers": [
             "window.plugins.socialsharing"
         ]
-    },
-    {
-        "id": "cordova-plugin-fcm.FCMPlugin",
-        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
-        "pluginId": "cordova-plugin-fcm",
-        "clobbers": [
-            "FCMPlugin"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -591,6 +591,7 @@ module.exports.metadata =
     "cordova-plugin-dialogs": "1.2.1",
     "cordova-plugin-file": "4.3.0",
     "cordova-plugin-file-transfer": "1.5.1",
+    "cordova-plugin-firebase": "0.1.19",
     "cordova-plugin-geolocation": "2.1.0",
     "cordova-plugin-globalization": "1.0.4",
     "cordova-plugin-inappbrowser": "1.3.0",
@@ -601,8 +602,7 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.1.3",
     "cordova-plugin-vibration": "2.1.2",
     "cordova-plugin-whitelist": "1.2.2",
-    "cordova-plugin-x-socialsharing": "5.1.3",
-    "cordova-plugin-fcm": "1.1.5"
+    "cordova-plugin-x-socialsharing": "5.1.3"
 };
 // BOTTOM OF METADATA
 });

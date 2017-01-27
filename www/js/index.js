@@ -34,16 +34,34 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+        window.FirebasePlugin.grantPermission();
+
+        window.FirebasePlugin.onTokenRefresh(function(token) {
+            if (localStorage.getItem("user_id") != null || localStorage.getItem("user_id") != 'null') {
+                json_dados = ajax_method(false,'usuario.update_token',localStorage.getItem("user_id"),token);
+              }
+        }, function(error) {
+            console.error(error);
+        });
+
+        window.FirebasePlugin.getToken(function(token) {
+            localStorage.setItem("token",token);
+        }, function(error) {
+            console.error(error);
+        });
+
+        window.FirebasePlugin.onNotificationOpen(function(notification) {
+            alert(JSON.parse(notification));
+        }, function(error) {
+            console.error(error);
+        });
+
+        window.FirebasePlugin.subscribe("androida");
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
     }
 };
+

@@ -8,75 +8,75 @@
     },
     "installed_plugins": {
         "cordova-plugin-battery-status": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.nomedoapp"
-        },
-        "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-device-motion": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-device-orientation": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-media": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-vibration": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.nomedoapp"
-        },
-        "cordova-plugin-fcm": {
-            "PACKAGE_NAME": "com.clubedeofertas"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         },
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.nomedoapp"
+            "PACKAGE_NAME": "br.com.clubedeofertas"
         }
     }
 }
