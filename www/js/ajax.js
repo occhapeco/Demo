@@ -30,6 +30,7 @@ var mainView = myApp.addView('.view-main', {
 });
 
 var taba=1;
+var resg = 0;
 
 function tabas(id){
   taba = id;
@@ -46,6 +47,28 @@ function token(token){
     };
     $.post(url,data);
   }
+}
+
+function resgate(){
+    if (resg == 0) {
+      resg = 1;
+       myApp.modal({
+          title:  'Clube de Ofertas',
+          text: 'Você tem cupons a serem avaliados, deseja avaliá-los agora?',
+          buttons: [
+            {
+              text: 'Mais tarde',
+              onClick: function() {}
+            },
+            {
+              text: 'Confirmar',
+              onClick: function() {
+                document.getElementById("botaocupons").click();
+              }
+            }
+          ]
+        });
+    }
 }
 
 if (localStorage.getItem("user_id") == null || localStorage.getItem("user_id") == 'null') 
@@ -394,6 +417,7 @@ function carregar_meus_cupons(){
       var batatinea = ' ';
       var last = ' ';
       var lucro = 0;
+      var resgatar = 0;
 
       for (i = 0;i < cupons.length ; i++) 
       {
@@ -441,8 +465,10 @@ function carregar_meus_cupons(){
           batatinea += '<span>Cupom Não utilizado</span>';
         if (cupons[i].estado == 0)
           batatinea += '<span>Cupom aguardando resgate</span>';
-        if (cupons[i].estado == 1)
+        if (cupons[i].estado == 1){
           batatinea += '<span>Avaliação pendente</span>';
+          resgatar = 1;
+        }
         if (cupons[i].estado == 2)
           batatinea += '<span>Cupom Finalizado</span>';
 
@@ -450,6 +476,9 @@ function carregar_meus_cupons(){
       }   
       document.getElementById('meus_cupons_historico').innerHTML = batatinea;
       document.getElementById('economia').innerHTML = 'Você já economizou R$'+parseFloat(lucro).toFixed(2);
+      if (resgatar == 1) {
+        resgate();
+      }
       myApp.hidePreloader();
     });
 }

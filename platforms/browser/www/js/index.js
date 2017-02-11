@@ -52,10 +52,12 @@ var app = {
         });
 
         window.FirebasePlugin.onNotificationOpen(function(notification) {
-            alert(notification);
+            alert(JSON.parse(notification));
         }, function(error) {
             console.error(error);
         });
+
+        window.FirebasePlugin.subscribe("androida");
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
