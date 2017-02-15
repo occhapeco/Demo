@@ -130,7 +130,7 @@ function cadastro(){
     myApp.showPreloader("Realizando cadastro...");
     var data = {
       classe:classe,
-      metodo:"select_perfil",
+      metodo:"insert",
       nome:document.getElementById("cad_nome").value,
       email:document.getElementById("cad_email").value,
       senha:document.getElementById("cad_senha").value,
