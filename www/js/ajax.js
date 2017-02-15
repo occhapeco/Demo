@@ -163,7 +163,7 @@ function avaliar(id){
   var data = {
     access_token:localStorage.getItem("access_token"),
     classe:classe,
-    metodo:"select_perfil",
+    metodo:"avaliar",
     id:id,
     produto:pegar_valor(document.getElementsByName('produto')),
     atendimento:pegar_valor(document.getElementsByName('atendimento')),
