@@ -529,7 +529,7 @@ function carregar_login(){
   document.getElementById('peige').innerHTML = '<div data-page="login-screen" class="page no-navbar">'+
                                                 '<div class="page-content login-screen-content" style="background-image:url(\'img/pancue.jpg\');background-size: 100%">'+
                                                 '<div style="padding-bottom: 5px; max-width: 480px; margin: auto;">'+
-                                                  '<div class="login-screen-title" style="margin: 25px auto; "><img src="img/logo_app.png" width="150px"></div>'+
+                                                  '<div class="login-screen-title" style="margin: 25px auto; "><img src="img/logo.png" width="150px"></div>'+
                                                     '<div class="list-block">'+
                                                       '<ul>'+
                                                         '<li class="item-content" style="padding-right: 15px;">'+
