@@ -713,6 +713,7 @@ function oloco(){
 function logout() {
   token("");
   localStorage.removeItem("user_id");
+  localStorage.removeItem("access_token");
   mainView.router.back();
   carregar_login();
   location.reload();
