@@ -142,9 +142,12 @@ function cadastro(){
     $.post(url,data,
       function(result) {
         myApp.hidePreloader();
-        if(result != 0)
+
+        var usuario = JSON.parse(result);
+        if(usuario.id != 0)
         {
-          localStorage.setItem("user_id",result);
+          localStorage.setItem("user_id",usuario.id);
+          localStorage.setItem("access_token",usuario.access_token);
           token(token);
           mainView.router.back();
           setTimeout(function () {location.reload();},50);
@@ -552,12 +555,33 @@ function carregar_login(){
                                                         '<p><a onclick="login();" class="button button-fill color-blue">Entrar</a></p>'+
                                                         '<p><a href="cadastrar.html" class="button button-fill color-orange">Cadastre-se gratuitamente. Clique aqui</a></p>'+
                                                         '<p><a href="cupons-no-login.html" onclick="$$(\'#ba\').show();" class="button button-fill color-white" style="color:orange">Ver cupons sem login</a></p>'+
+                                                        '<p><a href="#" onclick="esqueci_senha();" class="button button-fill color-white" style="color:orange">Esqueci minha senha</a></p>'+
                                                     '</div>'+
                                                     '</div>'+
                                                   '</div>'+
                                                 '</div>'+
                                                 '</div>'+
                                               '</div>';
+}
+
+function esqueci_senha()
+{
+  myApp.prompt('Enter your name?', function (email) {
+    var data = {
+      metodo:"redefinir_senha",
+      email:email
+    };
+
+    $.post(url,data,
+      function(result)
+      {
+        myApp.hidePreloader();
+        if(result)
+          myApp.alert("Enviamos um email de redefinição! Siga as instruções e mude sua senha.");
+        else
+          myApp.alert("Algo deu errado, tente novamente.");
+    });
+  });
 }
 
 function detalhes_opiniao(id,nome,desconto,preco_ini,preco_desc,prazo,empresa,imagem){
