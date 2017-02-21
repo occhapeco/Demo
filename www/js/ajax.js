@@ -8,7 +8,6 @@ var glb = 0;
 var myApp = new Framework7({
   pushState: true,
   animatePages: true,
-  swipeBackPage: true,
   modalTitle: "Clube de Ofertas",
   modalButtonCancel: "Cancelar",
   modalButtonOk: "Confirmar",
@@ -111,6 +110,14 @@ $$(document).on('pageInit', function (e) {
 
     }
 
+});
+
+$$(document).on('pageBack', function (e) {
+    var page = e.detail.page;
+
+    if(page.name === 'cupons-no-login'){
+         setTimeout(function (){location.reload();},150);     
+      }
 });
 
 var ptrContent = $$('.pull-to-refresh-content');
@@ -553,8 +560,8 @@ function carregar_login(){
                                                     '</div>'+
                                                     '<div class="list-block-label" style="padding-left:15px;padding-right:15px;">'+
                                                         '<p><a onclick="login();" class="button button-fill color-blue">Entrar</a></p>'+
-                                                        '<p><a href="cadastrar.html" class="button button-fill color-orange">Cadastre-se gratuitamente. Clique aqui</a></p>'+
-                                                        '<p><a href="cupons-no-login.html" onclick="$$(\'#ba\').show();" class="button button-fill color-white" style="color:orange">Ver cupons sem login</a></p>'+
+                                                        '<p><a href="cadastrar.html" class="button button-fill color-white" style="color:orange">Cadastre-se gratuitamente. Clique aqui</a></p>'+
+                                                        '<p><a href="cupons-no-login.html" onclick="$$(\'#ba\').show();" class="button button-fill color-orange" style="color:white">Ver cupons sem login</a></p>'+
                                                         '<p><a href="#" onclick="esqueci_senha();" class="button button-fill color-white" style="color:orange">Esqueci minha senha</a></p>'+
                                                     '</div>'+
                                                     '</div>'+
@@ -566,7 +573,10 @@ function carregar_login(){
 
 function esqueci_senha()
 {
-  myApp.prompt('Enter your name?', function (email) {
+
+  myApp.prompt('Digite seu email:', function (email) {
+    myApp.showPreloader();
+
     var data = {
       metodo:"redefinir_senha",
       email:email
