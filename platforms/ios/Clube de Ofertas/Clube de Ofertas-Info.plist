@@ -21,17 +21,17 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.1.0</string>
+    <string>1.1.2</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>1.1.0</string>
+    <string>1.1.2</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSMainNibFile</key>
     <string/>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Gostaria de salvar uma foto.</string>
+    <string>${PRODUCT_NAME} photos and video use.</string>
     <key>NSMainNibFile~ipad</key>
     <string/>
     <key>UISupportedInterfaceOrientations</key>
