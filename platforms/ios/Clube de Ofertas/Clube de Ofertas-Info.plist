@@ -30,6 +30,8 @@
     <true/>
     <key>NSMainNibFile</key>
     <string/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Gostaria de salvar uma foto.</string>
     <key>NSMainNibFile~ipad</key>
     <string/>
     <key>UISupportedInterfaceOrientations</key>
