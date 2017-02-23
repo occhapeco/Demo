@@ -36,5 +36,7 @@
 	<string>1:810246105636:ios:eba54226e4b60683</string>
 	<key>DATABASE_URL</key>
 	<string>https://clube-br.firebaseio.com</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>${PRODUCT_NAME} photos and video use.</string>
 </dict>
 </plist>
