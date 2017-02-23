@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		041B6999D10843AB98ACA79B /* CDVContact.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3D869A100B4FA28FD0901D /* CDVContact.m */; };
