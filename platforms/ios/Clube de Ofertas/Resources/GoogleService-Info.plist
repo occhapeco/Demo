@@ -32,9 +32,19 @@
 	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
-	<key>GOOGLE_APP_ID</key>
+	<key>GOOGLE_APP_ID</key> 
 	<string>1:810246105636:ios:eba54226e4b60683</string>
 	<key>DATABASE_URL</key>
 	<string>https://clube-br.firebaseio.com</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Advertisement would like to create a calendar event.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Advertisement would like to store a photo.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Advertisement would like to use bluetooth.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take and upload photos to Firebase Storage</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Used for Firebase Invites</string>
 </dict>
 </plist>
