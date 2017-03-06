@@ -63,6 +63,10 @@
 		E9013F1F90D74F1AA836C4EA /* GoogleIPhoneUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E6ECA583CD4053B76712C7 /* GoogleIPhoneUtilities.framework */; };
 		EA02E9B897864DD9ABB61757 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D476CC33A61B4AC49ACA37A2 /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EB094AF63B424FF5B41F1946 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6493FBE0BC5245B18FB4174E /* CDVFile.m */; };
+		7A44D517E9E1479AADC60253 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A4BE21128447A895AFDDC1 /* NSString+URLEncoding.m */; };
+		69973EB59B644EFF90262EE4 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E70B6D0E0CE4873BF55B5FA /* SocialSharing.m */; };
+		596DFB8DEDB6445E87DF02A7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656369CE4B194FD588701584 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DA9A852155C24A7DA33ADC88 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274483C9B1844A08B7E5B4FF /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +188,12 @@
 		F3ADE6B9650E493A95748D11 /* CDVCapture.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVCapture.h; path = "cordova-plugin-media-capture/CDVCapture.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Clube de Ofertas/config.xml"; sourceTree = "<group>"; };
 		FE5E9B8AF1304B76B34C97BB /* CDVConnection.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVConnection.h; path = "cordova-plugin-network-information/CDVConnection.h"; sourceTree = "<group>"; };
+		24A4BE21128447A895AFDDC1 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; name = "NSString+URLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		8E70B6D0E0CE4873BF55B5FA /* SocialSharing.m */ = {isa = PBXFileReference; name = "SocialSharing.m"; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7FC0351BBEF34FF2B30F4C6A /* NSString+URLEncoding.h */ = {isa = PBXFileReference; name = "NSString+URLEncoding.h"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		13CD68310E9F4D29A14ECF9B /* SocialSharing.h */ = {isa = PBXFileReference; name = "SocialSharing.h"; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		656369CE4B194FD588701584 /* Social.framework */ = {isa = PBXFileReference; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		274483C9B1844A08B7E5B4FF /* MessageUI.framework */ = {isa = PBXFileReference; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +221,8 @@
 				1F19DCD8F2A8495B9003D4F3 /* FirebaseRemoteConfig.framework in Frameworks */,
 				352919A4700D4F5A995F97B9 /* SystemConfiguration.framework in Frameworks */,
 				A2C17539703C453791642C81 /* CoreTelephony.framework in Frameworks */,
+				596DFB8DEDB6445E87DF02A7 /* Social.framework in Frameworks */,
+				DA9A852155C24A7DA33ADC88 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +316,8 @@
 				EA614C8A8358453C88A3C76E /* FirebaseRemoteConfig.framework */,
 				D4DAA5A4C2AA442C86AFA5D2 /* SystemConfiguration.framework */,
 				7FEB24D4B396402F96BBD1DE /* CoreTelephony.framework */,
+				656369CE4B194FD588701584 /* Social.framework */,
+				274483C9B1844A08B7E5B4FF /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -387,6 +401,10 @@
 				38EA38031C8D4DFCAE9451ED /* CDVStatusBar.h */,
 				7B3CE94D5CC54B11A1C76A15 /* CDVVibration.m */,
 				8FF1BA8FC95E4E8FBB810E01 /* CDVVibration.h */,
+				24A4BE21128447A895AFDDC1 /* NSString+URLEncoding.m */,
+				8E70B6D0E0CE4873BF55B5FA /* SocialSharing.m */,
+				7FC0351BBEF34FF2B30F4C6A /* NSString+URLEncoding.h */,
+				13CD68310E9F4D29A14ECF9B /* SocialSharing.h */,
 			);
 			name = Plugins;
 			path = "Clube de Ofertas/Plugins";
@@ -543,6 +561,8 @@
 				61C375890EC144FCA38F8365 /* CDVViewController+SplashScreen.m in Sources */,
 				C74011C3C8304F9FB8D4D001 /* CDVStatusBar.m in Sources */,
 				24A5D366A7E345A6A1903740 /* CDVVibration.m in Sources */,
+				7A44D517E9E1479AADC60253 /* NSString+URLEncoding.m in Sources */,
+				69973EB59B644EFF90262EE4 /* SocialSharing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
