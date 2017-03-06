@@ -64,6 +64,9 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.nomedoapp"
         },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "br.com.clubedeofertas"
+        },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "br.com.clubedeofertas"
         }
