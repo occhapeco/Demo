@@ -34,9 +34,6 @@
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "br.com.clubedeofertas"
         },
-        "cordova-plugin-firebase": {
-            "PACKAGE_NAME": "br.com.clubedeofertas"
-        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "br.com.clubedeofertas"
         },
