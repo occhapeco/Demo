@@ -30,6 +30,9 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <gap:config-file overwrite="true" parent="NSCameraUsageDescription" platform="ios">
+        <string>We are using the Camera for something..</string>
+    </gap:config-file>
     <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
     <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
     <icon height="40" platform="ios" src="www/res/icon/ios/icon-40.png" width="40" />

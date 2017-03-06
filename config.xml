@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.clubedeofertas" version="1.1.9" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="br.com.clubedeofertas" version="1.1.10" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Clube de Ofertas</name>
     <description>
         Aplicativo para cupons.
@@ -114,4 +114,7 @@
     <plugin name="cordova-plugin-vibration" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="~5.1.3" />
+    <gap:config-file platform="ios" parent="NSCameraUsageDescription" overwrite="true">
+       <string>We are using the Camera for something..</string>
+    </gap:config-file>
 </widget>
