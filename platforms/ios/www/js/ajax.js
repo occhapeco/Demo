@@ -149,18 +149,23 @@ function cadastro(){
     $.post(url,data,
       function(result) {
         myApp.hidePreloader();
-
-        var usuario = JSON.parse(result);
-        if(usuario.id != 0)
-        {
-          localStorage.setItem("user_id",usuario.id);
-          localStorage.setItem("access_token",usuario.access_token);
-          token(token);
-          mainView.router.back();
-          setTimeout(function () {location.reload();},50);
-        }
+        console.log(result);
+        if(result == -1)
+          myApp.alert("Esse email já está em uso!");
         else
-          myApp.alert("Seu perfil não pôde ser criado, reveja suas informações ou sua conexão por favor.");
+        {
+          var usuario = JSON.parse(result);
+          if(usuario.id != 0)
+          {
+            localStorage.setItem("user_id",usuario.id);
+            localStorage.setItem("access_token",usuario.access_token);
+            token(token);
+            mainView.router.back();
+            setTimeout(function () {location.reload();},50);
+          }
+          else
+            myApp.alert("Seu perfil não pôde ser criado, reveja suas informações ou sua conexão por favor.");
+        }
     });
   }
   else
@@ -926,14 +931,8 @@ function pegar_cupoma(id,titulo){
   }
 }
 
-function numero(){
-  if (document.getElementById('cad_telefone_ddd').value.length > 3) {
-        document.getElementById('cad_telefone').focus();
-        document.getElementById('cad_telefone_ddd').value = document.getElementById('cad_telefone_ddd').value.slice(0, -1);
-    }
-    if (document.getElementById('cad_telefone_ddd').value.length == 3) {
-      document.getElementById('cad_telefone').focus();
-    }
+function limitar(campo,min,max){
+  campo.value = campo.value.slice(min,max);
 }
 
 function next(event,elem)

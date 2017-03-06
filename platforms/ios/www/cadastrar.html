@@ -34,12 +34,11 @@
               <!-- Each "cell" has col-[widht in percents] class -->
               <div class="col-20">
                 <div class="item-input transp">
-                  <input type="number" name="cad_telefone_ddd" id="cad_telefone_ddd" placeholder="DDD" required style="padding-left: 10px; color: white" onkeyup="numero()">
                 </div>
               </div>
               <div class="col-80">
                 <div class="item-input transp">
-                  <input type="number" name="cad_telefone" id="cad_telefone" placeholder="Telefone" required style="padding-left: 10px; color: white" onkeypress="next(event,this)">
+                  <input type="number" name="cad_telefone" id="cad_telefone" placeholder="Telefone" required style="padding-left: 10px; color: white" onkeypress="limitar(this,0,8);">
                 </div>
               </div>
               </div>
