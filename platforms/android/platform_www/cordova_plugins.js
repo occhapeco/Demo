@@ -366,14 +366,6 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-firebase.FirebasePlugin",
-        "file": "plugins/cordova-plugin-firebase/www/firebase.js",
-        "pluginId": "cordova-plugin-firebase",
-        "clobbers": [
-            "FirebasePlugin"
-        ]
-    },
-    {
         "id": "cordova-plugin-geolocation.geolocation",
         "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
         "pluginId": "cordova-plugin-geolocation",
@@ -549,7 +541,6 @@ module.exports.metadata =
     "cordova-plugin-dialogs": "1.2.1",
     "cordova-plugin-file": "4.3.0",
     "cordova-plugin-file-transfer": "1.5.1",
-    "cordova-plugin-firebase": "0.1.19",
     "cordova-plugin-geolocation": "2.1.0",
     "cordova-plugin-globalization": "1.0.4",
     "cordova-plugin-inappbrowser": "1.3.0",
