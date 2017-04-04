@@ -132,7 +132,7 @@ ptrContent.on('refresh', function (e) {
 });
 
 function cadastro(){
-  if(document.getElementById("cad_nome").value.length > 2 && document.getElementById("cad_email").value.length > 2 && document.getElementById("cad_telefone_ddd").value.length > 1 && document.getElementById("cad_senha").value.length > 2 && document.getElementById("cad_telefone").value.length > 2)
+  if(document.getElementById("cad_nome").value.length > 2 && document.getElementById("cad_email").value.length > 2 && document.getElementById("cad_telefone_ddd").value.length > 1 && document.getElementById("cad_senha").value.length > 2 && document.getElementById("cad_telefone").value.length > 2 && document.getElementById("cad_nasc_dia").value != '-' && document.getElementById("cad_nasc_mes").value != '-' && document.getElementById("cad_nasc_ano").value != '-' )
   { 
     myApp.showPreloader("Realizando cadastro...");
     var data = {
@@ -142,8 +142,8 @@ function cadastro(){
       email:document.getElementById("cad_email").value,
       senha:document.getElementById("cad_senha").value,
       celular:document.getElementById("cad_telefone_ddd").value+document.getElementById("cad_telefone").value,
-      genero:0,
-      nascimento:"1990-03-12"
+      genero:document.getElementById("cad_genero").value,
+      nascimento:document.getElementById("cad_nasc_ano").value+'-'+document.getElementById("cad_nasc_mes").value+'-'+document.getElementById("cad_nasc_dia").value
     };
 
     $.post(url,data,

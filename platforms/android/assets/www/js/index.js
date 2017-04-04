@@ -35,7 +35,7 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
 
-        /*window.FirebasePlugin.grantPermission();
+        window.FirebasePlugin.grantPermission();
 
         window.FirebasePlugin.onTokenRefresh(function(token) {
             if (localStorage.getItem("user_id") != null || localStorage.getItem("user_id") != 'null') {
@@ -57,7 +57,7 @@ var app = {
             console.error(error);
         });
 
-        window.FirebasePlugin.subscribe("androida");*/
+        window.FirebasePlugin.subscribe("androida");
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
