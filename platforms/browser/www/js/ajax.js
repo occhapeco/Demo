@@ -142,8 +142,8 @@ function cadastro(){
       email:document.getElementById("cad_email").value,
       senha:document.getElementById("cad_senha").value,
       celular:document.getElementById("cad_telefone_ddd").value+document.getElementById("cad_telefone").value,
-      genero:0,
-      nascimento:"1990-03-12"
+      genero:document.getElementById("cad_genero").value,
+      nascimento:document.getElementById("cad_nasc_ano").value+"-"+document.getElementById("cad_nasc_mes").value+"-"+document.getElementById("cad_nasc_dia").value
     };
 
     $.post(url,data,
