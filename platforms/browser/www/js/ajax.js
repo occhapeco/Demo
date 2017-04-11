@@ -665,6 +665,8 @@ function detalhes_cupom(id,nome,desconto,preco_ini,preco_desc,prazo,quantidade,e
         set_inner("regras_cupom",'<p style="margin:0">Regras: '+cupom.detalhes.regras+'</p>');
         set_inner("empresa_cupom",empresa); 
         document.getElementById('telefone_cupom').setAttribute("onclick", "window.open('tel:"+cupom.detalhes.telefone+"', '_system');");
+        document.getElementById('tel_oferta').innerHTML = cupom.detalhes.telefone;
+        document.getElementById("end_mapa").innerHTML =  cupom.detalhes.rua+", "+cupom.detalhes.complemento+" "+cupom.detalhes.num+", "+cupom.detalhes.nome;
         document.getElementById("endereco_cupom").setAttribute("onclick", "window.open('http://maps.apple.com/?q=loc:"+cupom.detalhes.latitude+","+cupom.detalhes.longitude+"', '_system');");
 
         var data = {

@@ -8,9 +8,9 @@
       </div>
       <div class="center" id="empresa_oferta" style="font-family: Ubuntu;color: white;font-weight: bold"></div>
       <div class="right">
-        <!--<a onclick="//window.plugins.socialsharing.share('Nome da oferta No NOME DO APP, baixe e economize!', null, null, 'http://www.google.com')" class="link icon-only" id="refresh" style=" width:30px !important;color: white">
-          <i class="fa fa-share"></i>
-        </a>-->
+        <a onclick="window.plugins.socialsharing.share('Nome da oferta No NOME DO APP, baixe e economize!', null, null, 'http://www.google.com')" class="link icon-only" id="refresh" style=" width:30px !important;color: white">
+          <i class="fa fa-share-alt"></i>
+        </a>
       </div>
     </div>
   </div>
@@ -61,7 +61,7 @@
               <a href="#" onclick="window.open('tel:12345678', '_system');" class="item-link item-content" id="telefone_cupom">
               <div class="item-media"><i class="fa fa-phone"></i></div>
                 <div class="item-inner">
-                  <div class="item-title" >Ligar para esta empresa</div>
+                  <div class="item-title" id="tel_oferta">Ligar para esta empresa</div>
                 </div>
               </a>
             </li>
@@ -69,7 +69,7 @@
               <a href="#" onclick="window.open('http://maps.apple.com/?ll=51.84,-8.30', '_system');" class="item-link item-content" id="endereco_cupom">
                 <div class="item-media"><i class="fa fa-map"></i></div>
                 <div class="item-inner">
-                  <div class="item-title">Ver no mapa</div>
+                  <div class="item-title" id="end_mapa" style="white-space: inherit;">Ver no mapa</div>
                 </div>
               </a>
             </li>
