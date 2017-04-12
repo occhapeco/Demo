@@ -10,21 +10,21 @@
           <li class="item-content" style="padding-right: 15px;">
             <div class="item-inner" style="padding-right: 0;">
               <div class="item-input transp">
-                <input type="text" name="cad_nome" id="cad_nome" placeholder="Nome*" required style="padding-left: 10px; color: white" onkeypress="next(event,this)">
+                <input type="text" name="cad_nome" id="cad_nome" placeholder="Nome" required style="padding-left: 10px; color: white" onkeypress="next(event,this)">
               </div>
             </div>
           </li>
           <li class="item-content" style="padding-right: 15px;">
             <div class="item-inner" style="padding-right: 0;">
               <div class="item-input transp">
-                <input type="email" name="cad_email" id="cad_email" placeholder="Email*" required style="padding-left: 10px; color: white" onkeypress="next(event,this)">
+                <input type="email" name="cad_email" id="cad_email" placeholder="Email" required style="padding-left: 10px; color: white" onkeypress="next(event,this)">
               </div>
             </div>
           </li>
           <li class="item-content" style="padding-right: 15px;">
             <div class="item-inner" style="padding-right: 0;">
               <div class="item-input transp">
-                <input type="password" name="cad_senha" id="cad_senha" placeholder="Senha*" required style="padding-left: 10px; color: white" onkeypress="next(event,this)">
+                <input type="password" name="cad_senha" id="cad_senha" placeholder="Senha" required style="padding-left: 10px; color: white" onkeypress="next(event,this)">
               </div>
             </div>
           </li>
@@ -34,12 +34,12 @@
               <!-- Each "cell" has col-[widht in percents] class -->
               <div class="col-20">
                 <div class="item-input transp">
-                  <input type="number" name="cad_telefone_ddd" id="cad_telefone_ddd" placeholder="DDD*" required style="padding-left: 10px; color: white" onkeyup="limitar(this,0,3);" onkeypress="next(event,this)">
+                  <input type="number" name="cad_telefone_ddd" id="cad_telefone_ddd" placeholder="DDD" required style="padding-left: 10px; color: white" onkeyup="limitar(this,0,3);" onkeypress="next(event,this)">
                 </div>
               </div>
               <div class="col-80">
                 <div class="item-input transp">
-                  <input type="number" name="cad_telefone" id="cad_telefone" placeholder="Telefone*" required style="padding-left: 10px; color: white" onkeypress="limitar(this,0,8);">
+                  <input type="number" name="cad_telefone" id="cad_telefone" placeholder="Telefone" required style="padding-left: 10px; color: white" onkeypress="limitar(this,0,8);">
                 </div>
               </div>
               </div>
@@ -51,7 +51,7 @@
                   <div class="col-33">
                     <div class="item-input transp">
                       <select id="cad_nasc_dia" style="padding-left: 10px; color: white">
-                        <option value="1">Dia</option>
+                        <option value="-">Dia</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -89,7 +89,7 @@
                   <div class="col-33">
                     <div class="item-input transp">
                       <select id="cad_nasc_mes" style="padding-left: 10px; color: white">
-                        <option value="1">Mês</option>
+                        <option value="-">Mês</option>
                         <option value="1">Janeiro</option>
                         <option value="2">Fevereiro</option>
                         <option value="3">Março</option>
@@ -108,7 +108,7 @@
                   <div class="col-33">
                     <div class="item-input transp">
                       <select id="cad_nasc_ano" style="padding-left: 10px; color: white">
-                        <option value="2000">Ano</option>
+                        <option value="-">Ano</option>
                         <option value="2011">2011</option>
                         <option value="2010">2010</option>
                         <option value="2009">2009</option>
@@ -172,7 +172,6 @@
             <div class="item-inner" style="padding-right: 0;">
               <div class="item-input transp">
                 <select id="cad_genero" style="padding-left: 10px; color: white">
-                        <option value="0">Gênero</option>
                         <option value="0">Feminino</option>
                         <option value="1">Masculino</option>
                 </select>
@@ -184,7 +183,6 @@
         <div class="list-block-label" style="padding-left:15px;padding-right:15px;">
           <p><a onclick="cadastro();" class="button button-fill" id="cadastro_cadastrar">Cadastrar</a></p>
           <p><a href="#" onclick=" oloco ();" id="cadastro_login">Já possui cadastro? Clique aqui!</a></p>
-          <p style="color:white">*Campo Requerido</p>
         </div>
       </div>
   </div>
