@@ -38,6 +38,7 @@ var app = {
         window.FirebasePlugin.grantPermission();
 
         window.FirebasePlugin.onTokenRefresh(function(token) {
+            localStorage.setItem("token",token);
             if (localStorage.getItem("user_id") != null || localStorage.getItem("user_id") != 'null') {
                 json_dados = ajax_method(false,'usuario.update_token',localStorage.getItem("user_id"),token);
               }
