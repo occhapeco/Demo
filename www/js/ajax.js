@@ -36,7 +36,7 @@ function tabas(id){
 }
 
 function token(token){
-  if (localStorage.getItem("user_id") != null || localStorage.getItem("user_id") != 'null') {
+  if (localStorage.getItem("user_id") != null && localStorage.getItem("user_id") != 'null') {
     var data = {
       access_token:localStorage.getItem("access_token"),
       classe:classe,
@@ -159,7 +159,7 @@ function cadastro(){
           {
             localStorage.setItem("user_id",usuario.id);
             localStorage.setItem("access_token",usuario.access_token);
-            token(token);
+            token(localStorage.getItem("token"));
             mainView.router.back();
             setTimeout(function () {location.reload();},50);
           }
@@ -800,6 +800,7 @@ function carregar_perfil(){
   else
   {
     myApp.showPreloader();
+    token(localStorage.getItem("token"));
     var data = {
       access_token:localStorage.getItem("access_token"),
       classe:classe,
